@@ -1,0 +1,42 @@
+{
+  "name": "@vueless/storybook",
+  "version": "0.0.4",
+  "description": "The package simplifies Storybook configuration for Vueless UI library.",
+  "homepage": "https://vueless.com",
+  "author": "Johnny Grid",
+  "license": "MIT",
+  "type": "module",
+  "main": "index.js",
+  "private": false,
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vuelessjs/vueless-storybook.git"
+  },
+  "bugs": {
+    "url": "https://github.com/vuelessjs/vueless-storybook/issues"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@storybook/addon-essentials": "^8.0.0",
+    "@storybook/addon-interactions": "^8.0.0",
+    "@storybook/addon-links": "^8.0.0",
+    "@storybook/blocks": "^8.0.0",
+    "@storybook/manager-api": "^8.0.0",
+    "@storybook/test": "^8.0.0",
+    "@storybook/theming": "^8.0.0",
+    "@storybook/vue3": "^8.0.0",
+    "@storybook/vue3-vite": "^8.0.0",
+    "prettier2": "npm:prettier@2.8.8",
+    "storybook": "^8.0.0"
+  },
+  "peerDependencies": {
+    "tailwindcss": "^3.3.4",
+    "vueless": "^0.0.3"
+  }
+}

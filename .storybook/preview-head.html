@@ -1,0 +1,72 @@
+<!--
+Overrides content of preview IFRAME HTML page's <head> tag,
+affecting rendered component(s) below Canvas and Docs tabs.
+-->
+<!-- Fonts overriding -->
+<link rel="dns-prefetch" href="https://fonts.googleapis.com">
+<link rel="dns-prefetch" href="https://fonts.gstatic.com">
+<link rel="preconnect" crossorigin="anonymous" href="https://fonts.googleapis.com">
+<link rel="preconnect" crossorigin="anonymous" href="https://fonts.gstatic.com">
+<link rel="stylesheet" crossorigin="anonymous" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap">
+
+<!-- Styles overriding -->
+<style>
+  body {
+    font-family: Roboto, sans-serif;
+  }
+
+  #storybook-docs h2 {
+    margin-top: 32px !important;
+    margin-bottom: 24px !important;
+    padding-bottom: 8px !important;
+    font-weight: bold !important;
+  }
+
+  .docblock-argstable-body {
+    filter: none !important;
+    border-radius: 0.5rem !important;
+  }
+
+  .docblock-argstable-body tr:not([title]) > td {
+    background-color: white !important;
+  }
+
+  .docblock-argstable-body tr td {
+    border-radius: 0 !important;
+  }
+
+  .sbdocs-preview {
+    box-shadow: none !important;
+  }
+
+  .docblock-argstable [type='checkbox']:checked,
+  .docblock-argstable [type='radio']:checked {
+    background-color: rgb(17 24 39) !important;
+  }
+
+  .docblock-argstable [type='checkbox']:focus,
+  .docblock-argstable [type='radio']:focus {
+    @apply !ring-gray-300;
+  }
+
+  .markdown {
+    .docblock-source {
+      margin: 0px 0 24px !important;
+    }
+
+    code {
+      background-color: #f3f4f6 !important;
+      border-color: #d1d5db !important;
+    }
+
+    .sbdocs-a {
+      border-bottom: dashed 1px #4b5563;
+      color: #4b5563;
+    }
+
+    .sbdocs-a:hover {
+      border-bottom: none;
+      color: #4b5563;
+    }
+  }
+</style>
