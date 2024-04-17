@@ -3,9 +3,7 @@ export default {
   stories: [
     "../node_modules/vueless/**/*.stories.@(js|jsx|ts|tsx)",
     "../node_modules/vueless/**/*.@(mdx)",
-    // TODO: Remove it later
-    "../.vueless/**/*.stories.@(js|jsx|ts|tsx)",
-    "../.vueless/**/*.@(mdx)"],
+  ],
   addons: [
     "@storybook/addon-links",
     "@storybook/addon-essentials",
