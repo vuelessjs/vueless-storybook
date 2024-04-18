@@ -1,5 +1,5 @@
 import { create } from "@storybook/theming/create";
-import colors from "tailwindcss/colors";
+import colors from "tailwindcss/colors.js";
 
 export default create({
   base: "light",
@@ -9,7 +9,7 @@ export default create({
 
   brandTitle: "Vueless UI",
   brandUrl: "https://vueless.com",
-  brandImage: "/static/storybook/vueless-logo.png",
+  brandImage: "/images/logo.png",
   brandTarget: "_blank",
 
   // Main colors

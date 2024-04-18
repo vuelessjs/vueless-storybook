@@ -6,9 +6,8 @@ import { vue3SourceDecorator } from "./decorators/vue3SourceDecorator";
 import { createStore } from "vuex";
 import NotifyServiceDefault from "vueless/src/ui.notify/services";
 
-
 // Tailwind styles
-import "../index.pcss";
+import "./index.pcss";
 
 // Common stores
 import loader from "vueless/src/ui.loader-rendering/store";
