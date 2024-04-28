@@ -1,0 +1,24 @@
+{
+  "git": {
+    "tag": false,
+    "tagName": "v${version}",
+    "commitMessage": "Release v${version} / [no ci]",
+    "requireUpstream": false,
+    "requireCleanWorkingDir": false
+  },
+  "github": {
+    "release": false
+  },
+  "npm": {
+    "publish": false,
+    "publishPath": "./dist"
+  },
+  "plugins": {
+    "@release-it/bumper": {
+      "out": "dist/*.json"
+    }
+  },
+  "hooks": {
+    "after:release": "echo Successfully released ${name} v${version}."
+  }
+}
