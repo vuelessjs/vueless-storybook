@@ -19,7 +19,7 @@
     "release:patch": "release-it patch --ci --npm.publish",
     "release:minor": "release-it minor --ci --npm.publish --git.tag --github.release",
     "release:major": "release-it major --ci --npm.publish --git.tag --github.release",
-    "package:prepare": "rm -rf dist && mkdir -p dist && cp -r src/* package.json LICENSE README.md dist/"
+    "package:prepare": "rm -rf dist && mkdir -p dist && cp -r src/. package.json LICENSE README.md dist/"
   },
   "dependencies": {
     "@storybook/addon-essentials": "^8.0.9",
