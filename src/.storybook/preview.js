@@ -4,6 +4,7 @@ import { vue3SourceDecorator } from "./decorators/vue3SourceDecorator";
 
 // Vue plugins
 import { createStore } from "vuex";
+import { createVueless } from "vueless";
 import NotifyServiceDefault from "vueless/ui.notify/services";
 
 // Tailwind styles
@@ -19,9 +20,13 @@ const store = createStore({
   modules: { loader, loaderTop, breakpoint },
 });
 
+// Create vueless instance
+const vueless = createVueless();
+
 // Create storybook app instance
 const storybookApp = (app) => {
   app.use(store);
+  app.use(vueless);
   app.use(new NotifyServiceDefault().notifyInstance);
 };
 
@@ -37,9 +42,9 @@ export default {
     backgrounds,
     options: {
       storySort: (a, b) =>
-        a.id === b.id
-          ? 0
-          : a.name === "Docs" && a.id.localeCompare(b.id, undefined, { numeric: true }),
+          a.id === b.id
+              ? 0
+              : a.name === "Docs" && a.id.localeCompare(b.id, undefined, { numeric: true }),
     },
   },
 };
