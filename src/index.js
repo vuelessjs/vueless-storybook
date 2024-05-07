@@ -1,9 +1,18 @@
 #!/usr/bin/env node
 
-import fs from "fs";
+import fs, { promises } from "fs";
 import path from "path";
 
-function copyFolderSync(source, target) {
+const __dirname = path.dirname(new URL(import.meta.url).pathname);
+
+const source = path.join(__dirname, ".storybook");
+const target = path.join(__dirname, "..", "..", "..", ".storybook");
+
+copyStorybookPreset(source, target);
+
+await addStorybookCommands();
+
+function copyStorybookPreset(source, target) {
   if (fs.existsSync(target)) {
     const timestamp = new Date().valueOf();
     const renamedTarget = `${target}-${timestamp}`;
@@ -21,13 +30,29 @@ function copyFolderSync(source, target) {
     const destFile = path.join(target, file);
     const stat = fs.lstatSync(srcFile);
 
-    stat.isDirectory() ? copyFolderSync(srcFile, destFile) : fs.copyFileSync(srcFile, destFile);
+    stat.isDirectory()
+      ? copyStorybookPreset(srcFile, destFile)
+      : fs.copyFileSync(srcFile, destFile);
   });
 }
 
-const __dirname = path.dirname(new URL(import.meta.url).pathname);
+async function addStorybookCommands() {
+  try {
+    const storybookCommands = {
+      "sb:dev-full": "STORYBOOK_FULL=1 storybook dev -p 6006 --no-open",
+      "sb:dev": "storybook dev -p 6006 --docs --no-open",
+      "sb:build": "NO_PWA=1 storybook build --docs",
+      "sb:preview": "vite preview --host --outDir=storybook-static",
+    };
 
-const sourceFolder = path.join(__dirname, ".storybook");
-const targetFolder = path.join(__dirname, "..", "..", "..", ".storybook");
+    const packageJsonPath = path.resolve(__dirname, "../../../package.json");
+    const data = await promises.readFile(packageJsonPath, "utf8");
+    const packageJson = JSON.parse(data);
 
-copyFolderSync(sourceFolder, targetFolder);
+    packageJson.scripts = { ...packageJson.scripts, ...storybookCommands };
+
+    await promises.writeFile(packageJsonPath, JSON.stringify(packageJson, null, 2), "utf8");
+  } catch (error) {
+    console.error("Error:", error);
+  }
+}
