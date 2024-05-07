@@ -12,6 +12,9 @@
     "access": "public",
     "registry": "https://registry.npmjs.org/"
   },
+  "bin": {
+    "copy": "./index.js"
+  },
   "scripts": {
     "lint": "eslint --ext .vue,.js,.ts --no-fix --ignore-path .eslintignore src/",
     "lint:fix": "eslint --ext .vue,.js,.ts --fix --ignore-path .eslintignore src/",
