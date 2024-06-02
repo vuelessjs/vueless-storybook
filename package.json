@@ -51,9 +51,6 @@
   "resolutions": {
     "jackspeak": "2.3.6"
   },
-  "pnpm": {
-    "hoist-pattern": ["*"]
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/vuelessjs/vueless-storybook.git"
