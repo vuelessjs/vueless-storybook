@@ -6,11 +6,13 @@ import path from "path";
 const __dirname = path.dirname(new URL(import.meta.url).pathname);
 
 const source = path.join(__dirname, ".storybook");
-const target = path.join(__dirname, "..", "..", "..", ".storybook");
+const target = path.join(process.cwd(), ".storybook");
 
 copyStorybookPreset(source, target);
 
 await addStorybookCommands();
+
+await createNpmrc();
 
 function copyStorybookPreset(source, target) {
   if (fs.existsSync(target)) {
@@ -54,5 +56,20 @@ async function addStorybookCommands() {
     await promises.writeFile(packageJsonPath, JSON.stringify(packageJson, null, 2), "utf8");
   } catch (error) {
     console.error("Error:", error);
+  }
+}
+
+async function createNpmrc() {
+  const npmrcContent = `# @vueless/storybook: pnpm: disable hoisting for the package related modules.
+public-hoist-pattern[] = *storybook*
+public-hoist-pattern[] = prettier2v
+`;
+
+  const npmrcPath = path.join(process.cwd(), ".npmrc");
+
+  try {
+    await promises.writeFile(npmrcPath, npmrcContent);
+  } catch (err) {
+    console.error("Error writing .npmrc file:", err);
   }
 }
