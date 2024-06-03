@@ -1,10 +1,14 @@
 #!/usr/bin/env node
+/* eslint-disable no-console */
 
 import fs, { promises } from "fs";
 import path from "path";
 
-const __dirname = path.dirname(new URL(import.meta.url).pathname);
+// Get the command-line arguments
+const args = process.argv.slice(2);
+const parsedArgs = parseArgs(args);
 
+const __dirname = path.dirname(new URL(import.meta.url).pathname);
 const source = path.join(__dirname, ".storybook");
 const target = path.join(process.cwd(), ".storybook");
 
@@ -12,7 +16,9 @@ copyStorybookPreset(source, target);
 
 await addStorybookCommands();
 
-await createNpmrc();
+if (parsedArgs.pnpm) {
+  await createNpmrc();
+}
 
 function copyStorybookPreset(source, target) {
   if (fs.existsSync(target)) {
@@ -60,16 +66,32 @@ async function addStorybookCommands() {
 }
 
 async function createNpmrc() {
-  const npmrcContent = `# @vueless/storybook: pnpm: disable hoisting for the package related modules.
-public-hoist-pattern[] = *storybook*
-public-hoist-pattern[] = prettier2v
-`;
+  const npmrcContent = [
+    "# @vueless/storybook: pnpm: disable hoisting for the package related modules.",
+    "public-hoist-pattern[] = *storybook*",
+    "public-hoist-pattern[] = prettier2",
+  ];
 
   const npmrcPath = path.join(process.cwd(), ".npmrc");
 
   try {
-    await promises.writeFile(npmrcPath, npmrcContent);
+    await promises.writeFile(npmrcPath, npmrcContent.join("\n"));
   } catch (err) {
     console.error("Error writing .npmrc file:", err);
   }
+}
+
+function parseArgs(args) {
+  const result = {};
+
+  args.forEach((arg) => {
+    if (arg.startsWith("--")) {
+      const [key, value] = arg.split("=");
+      const normalizedKey = key.substring(2);
+
+      result[normalizedKey] = value !== undefined ? value : true;
+    }
+  });
+
+  return result;
 }
