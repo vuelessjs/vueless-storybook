@@ -49,7 +49,7 @@ async function addStorybookCommands() {
     const storybookCommands = {
       "sb:dev-full": "STORYBOOK_FULL=1 storybook dev -p 6006 --no-open",
       "sb:dev": "storybook dev -p 6006 --docs --no-open",
-      "sb:build": "NO_PWA=1 storybook build --docs",
+      "sb:build": "storybook build --docs",
       "sb:preview": "vite preview --host --outDir=storybook-static",
     };
 
