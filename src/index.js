@@ -53,13 +53,13 @@ async function addStorybookCommands() {
       "sb:preview": "vite preview --host --outDir=storybook-static",
     };
 
-    const packageJsonPath = path.resolve(__dirname, "../../../package.json");
+    const packageJsonPath = path.resolve(process.cwd(), "package.json");
     const data = await promises.readFile(packageJsonPath, "utf8");
     const packageJson = JSON.parse(data);
 
     packageJson.scripts = { ...packageJson.scripts, ...storybookCommands };
 
-    await promises.writeFile(packageJsonPath, JSON.stringify(packageJson, null, 2), "utf8");
+    await promises.writeFile(packageJsonPath, JSON.stringify(packageJson, null, 2) + "\n", "utf8");
   } catch (error) {
     console.error("Error:", error);
   }
