@@ -1,9 +1,9 @@
 /** @type { import('@storybook/vue3-vite').StorybookConfig } */
 export default {
   stories: [
-    "../node_modules/vueless/**/*.stories.@(js|jsx|ts|tsx)",
+    "../node_modules/vueless/**/*stories.@(js|jsx|ts|tsx)",
     "../node_modules/vueless/**/*.@(mdx)",
-    "../src/**/*.stories.@(js|jsx|ts|tsx)",
+    "../src/**/*stories.@(js|jsx|ts|tsx)",
     "../src/**/*.@(mdx)",
   ],
   addons: [

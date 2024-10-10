@@ -1,7 +1,7 @@
 import { setup } from "@storybook/vue3";
 
-import { backgrounds, docs, layout } from "./configs/main.config";
-import { vue3SourceDecorator } from "./decorators/vue3SourceDecorator";
+import { backgrounds, docs, layout } from "./configs/main.config.js";
+import { vue3SourceDecorator } from "./decorators/vue3SourceDecorator.js";
 
 // Vue plugins
 import { createVueless } from "vueless";

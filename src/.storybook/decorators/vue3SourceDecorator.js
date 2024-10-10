@@ -79,18 +79,21 @@ function templateSourceCode(templateSource, args, argTypes) {
     }
   }
 
-  const slotTemplateCode =
+  const slotTemplateCodeBefore =
     // eslint-disable-next-line vue/max-len
-    `<template v-for="(slot, index) of slots" :key="index" v-slot:[slot]><template v-if="args[slot + 'Slot']">{{ args[slot + 'Slot'] }}</template></template>`;
-  const templateDefaultRegEx = /<template #default>([\s\S]*?)<\/template>/g;
+    `<template v-for="(slot, index) of slots" :key="index" v-slot:[slot]><template v-if="slot === 'default' && !args['defaultSlot']">`;
+
+  const slotTemplateCodeAfter =
+    // eslint-disable-next-line vue/max-len
+    `</template><template v-else-if="slot === 'default' && args['defaultSlot']">{{ args['defaultSlot'] }}</template><template v-else-if="args[slot + 'Slot']">{{ args[slot + 'Slot'] }}</template></template>`;
 
   return templateSource
     .replace(/>[\s]+</g, "><")
     .trim()
-    .replace(slotTemplateCode, "")
-    .replace(templateDefaultRegEx, "$1")
+    .replace(slotTemplateCodeBefore, "")
+    .replace(slotTemplateCodeAfter, "")
     .replace(
-      'v-model="args.modelValue"',
+      `v-model="args.${MODEL_VALUE_KEY}"`,
       args[MODEL_VALUE_KEY] ? `v-model="${args[MODEL_VALUE_KEY]}"` : "",
     )
     .replace(
@@ -109,6 +112,8 @@ function propToSource(key, val) {
       return val ? key : "";
     case "string":
       return `${key}="${val}"`;
+    case "object":
+      return `:${key}="${JSON.stringify(val)}"`;
     default:
       return `:${key}="${val}"`;
   }
