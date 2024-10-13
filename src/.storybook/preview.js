@@ -1,4 +1,6 @@
 import { setup } from "@storybook/vue3";
+import { DARK_MODE_SELECTOR } from "vueless/constants.js";
+import { withThemeByClassName } from '@storybook/addon-themes';
 
 import { backgrounds, docs, layout } from "./configs/main.config.js";
 import { vue3SourceDecorator } from "./decorators/vue3SourceDecorator.js";
@@ -26,7 +28,13 @@ setup(storybookApp);
 
 // Set storybook config
 export default {
-  decorators: [vue3SourceDecorator],
+  decorators: [
+    vue3SourceDecorator,
+    withThemeByClassName({
+      themes: { light: "", dark: DARK_MODE_SELECTOR },
+      defaultTheme: "dark",
+    }),
+  ],
   parameters: {
     layout,
     docs,
