@@ -36,7 +36,8 @@
     "@storybook/vue3": "^8.3.5",
     "@storybook/vue3-vite": "^8.3.5",
     "prettier2": "npm:prettier@2.8.8",
-    "storybook": "^8.3.5"
+    "storybook": "^8.3.5",
+    "storybook-dark-mode": "^4.0.2"
   },
   "devDependencies": {
     "@release-it/bumper": "^6.0.1",

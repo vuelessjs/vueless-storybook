@@ -7,6 +7,7 @@ export default {
     "../src/**/*.@(mdx)",
   ],
   addons: [
+    "storybook-dark-mode",
     "@storybook/addon-links",
     "@storybook/addon-themes",
     "@storybook/addon-essentials",
