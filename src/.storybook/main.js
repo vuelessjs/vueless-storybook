@@ -7,11 +7,11 @@ export default {
     "../src/**/*.@(mdx)",
   ],
   addons: [
-    "storybook-dark-mode",
     "@storybook/addon-links",
-    "@storybook/addon-themes",
     "@storybook/addon-essentials",
     "@storybook/addon-interactions",
+    "storybook-dark-mode",
+    // "@storybook/addon-themes", TODO: uncomment when dark mode will be implemented to the components.
   ],
   framework: {
     name: "@storybook/vue3-vite",
