@@ -1,8 +1,10 @@
 import { defineConfig } from "vite";
+import tailwindcss from "tailwindcss";
+import autoprefixer from "autoprefixer";
 
 // Plugins
 import Vue from "@vitejs/plugin-vue";
-import { Vueless } from "@vueless/plugin-vite";
+import { Vueless } from "vueless/plugin-vite";
 
 export default defineConfig({
   plugins: [Vue(), Vueless({ mode: "storybook", env: "vueless", debug: false })],
@@ -10,11 +12,17 @@ export default defineConfig({
     include: [
       "cva",
       "tailwind-merge",
+      "@tailwindcss/forms",
       "prettier2",
       "prettier2/parser-html",
       "@storybook/blocks",
       "@storybook/theming/create",
       "@storybook/addon-themes",
     ],
+  },
+  css: {
+    postcss: {
+      plugins: [tailwindcss, autoprefixer],
+    },
   },
 });
