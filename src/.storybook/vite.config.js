@@ -7,7 +7,7 @@ import Vue from "@vitejs/plugin-vue";
 import { Vueless } from "vueless/plugin-vite";
 
 export default defineConfig({
-  plugins: [Vue(), Vueless({ mode: "storybook", env: "vueless", debug: false })],
+  plugins: [Vue(), Vueless({ mode: "storybook", debug: false })],
   optimizeDeps: {
     include: [
       "cva",
