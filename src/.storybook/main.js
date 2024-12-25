@@ -2,9 +2,9 @@
 export default {
   stories: [
     "../node_modules/vueless/**/*stories.@(js|jsx|ts|tsx)",
-    "../node_modules/vueless/**/*.@(mdx)",
+    "../node_modules/vueless/**/docs.@(mdx)",
     "../src/**/*stories.@(js|jsx|ts|tsx)",
-    "../src/**/*.@(mdx)",
+    "../src/**/docs.@(mdx)",
   ],
   addons: [
     "@storybook/addon-links",
