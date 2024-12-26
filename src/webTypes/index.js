@@ -12,8 +12,8 @@ const {
   alias: { c: "configFile", w: "watch" },
 });
 
-export default async function buildWebTypes() {
+export default async function buildWebTypes(vuelessConfig) {
   const conf = await extractConfig(cwd || process.cwd(), watch, configFile, pathArray);
 
-  build(conf);
+  build(conf, vuelessConfig);
 }

@@ -6,16 +6,15 @@ import chokidar from "chokidar";
 import { globbySync } from "globby";
 import { parse } from "vue-docgen-api";
 import _ from "lodash-es";
-import { vuelessConfig } from "./vuelessConfig.js";
 
-export default async function build(config) {
+export default async function build(config, vuelessConfig) {
   config.componentsRoot = path.resolve(config.cwd, config.componentsRoot);
   config.outFile = path.resolve(config.cwd, config.outFile);
 
   const { watcher, componentFiles } = getSources(config.components, config.componentsRoot);
 
   const cache = {};
-  const buildWebTypesBound = rebuild.bind(null, config, componentFiles, cache, watcher);
+  const buildWebTypesBound = rebuild.bind(null, config, componentFiles, cache, vuelessConfig);
 
   try {
     await buildWebTypesBound();
@@ -50,36 +49,22 @@ function getSources(components, cwd) {
   return { watcher, componentFiles: allComponentFiles };
 }
 
-async function rebuild(config, files, cachedContent, watcher, changedFilePath) {
+async function rebuild(config, files, cachedContent, vuelessConfig) {
   const cacheWebTypesContent = async (filePath) => {
     cachedContent[filePath.replace(/\\/g, "/")] = await extractInformation(
       path.join(config.componentsRoot, filePath),
       config,
+      vuelessConfig,
     );
 
     return true;
   };
 
-  if (changedFilePath) {
-    // eslint-disable-next-line no-console
-    console.log("Rebuilding on update file " + changedFilePath);
-
-    try {
-      // If in chokidar mode (watch), the path of the file that was just changed
-      // is passed as an argument. We only affect the changed file and avoid re-parsing the rest
-      await cacheWebTypesContent(changedFilePath);
-    } catch (e) {
-      throw new Error(
-        `Error building file ${config.outFile} when file ${changedFilePath} has changed: ${e.message}`,
-      );
-    }
-  } else {
-    try {
-      // if we are initializing the current file, parse all components
-      await Promise.all(files.map(cacheWebTypesContent));
-    } catch (e) {
-      throw new Error(`Error building file ${config.outFile}: ${e.message}`);
-    }
+  try {
+    // if we are initializing the current file, parse all components
+    await Promise.all(files.map(cacheWebTypesContent));
+  } catch (e) {
+    throw new Error(`Error building file ${config.outFile}: ${e.message}`);
   }
 
   // and finally, save all concatenated values to the Markdown file
@@ -163,7 +148,7 @@ function getType(prop) {
   return prop.type?.name ?? "any";
 }
 
-async function extractInformation(absolutePath, config) {
+async function extractInformation(absolutePath, config, vuelessConfig) {
   const doc = await parse(absolutePath, config.apiOptions);
   const name = doc.name || doc.displayName;
   let description = doc.description?.trim() ?? "";
