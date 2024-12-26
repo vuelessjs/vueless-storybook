@@ -35,9 +35,15 @@
     "@storybook/theming": "^8.4.7",
     "@storybook/vue3": "^8.4.7",
     "@storybook/vue3-vite": "^8.4.7",
+    "chokidar": "^4.0.3",
+    "esbuild": "^0.24.2",
+    "globby": "^14.0.2",
+    "minimist": "^1.2.8",
+    "mkdirp": "^3.0.1",
     "prettier2": "npm:prettier@2.8.8",
     "storybook": "^8.4.7",
-    "storybook-dark-mode": "^4.0.2"
+    "storybook-dark-mode": "^4.0.2",
+    "vue-docgen-api": "^4.79.2"
   },
   "devDependencies": {
     "@release-it/bumper": "^6.0.1",
