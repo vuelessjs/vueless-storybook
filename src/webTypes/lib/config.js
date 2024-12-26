@@ -6,9 +6,7 @@ import esbuild from "esbuild";
 const CACHE_PATH = "./node_modules/.cache/vueless";
 const WEB_TYPES_CONFIG_FILE_NAME = "web-types.config";
 
-export async function extractConfig(cwd, watch = false, configFileFromCmd, pathArray = []) {
-  const [outFileFromCmd] = pathArray;
-
+export async function extractConfig(cwd, watch = false, configFileFromCmd) {
   const fileContent = await readFile(path.join(cwd, "package.json"), "utf-8");
   const packageJson = JSON.parse(fileContent);
 
@@ -26,7 +24,7 @@ export async function extractConfig(cwd, watch = false, configFileFromCmd, pathA
     watch,
     components,
     componentsRoot: cwd,
-    outFile: outFileFromCmd || `${CACHE_PATH}/web-types.json`,
+    outFile: `${CACHE_PATH}/web-types.json`,
     packageName: packageJson["name"],
     packageVersion: packageJson["version"],
     descriptionMarkup: "markdown",
