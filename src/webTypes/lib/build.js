@@ -52,7 +52,7 @@ function getSources(components, cwd) {
 async function rebuild(config, files, cachedContent, vuelessConfig) {
   const cacheWebTypesContent = async (filePath) => {
     cachedContent[filePath.replace(/\\/g, "/")] = await extractInformation(
-      path.join(config.componentsRoot, filePath),
+      filePath,
       config,
       vuelessConfig,
     );
