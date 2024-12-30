@@ -2,6 +2,7 @@
 /* eslint-disable no-console */
 
 import fs, { promises } from "fs";
+import { cwd } from "node:process";
 import path from "path";
 
 // Get the command-line arguments
@@ -10,7 +11,7 @@ const parsedArgs = parseArgs(args);
 
 const __dirname = path.dirname(new URL(import.meta.url).pathname);
 const source = path.join(__dirname, ".storybook");
-const target = path.join(process.cwd(), ".storybook");
+const target = path.join(cwd(), ".storybook");
 
 copyStorybookPreset(source, target);
 
@@ -53,7 +54,7 @@ async function addStorybookCommands() {
       "sb:preview": "vite preview --host --outDir=storybook-static",
     };
 
-    const packageJsonPath = path.resolve(process.cwd(), "package.json");
+    const packageJsonPath = path.resolve(cwd(), "package.json");
     const data = await promises.readFile(packageJsonPath, "utf8");
     const packageJson = JSON.parse(data);
 
@@ -72,7 +73,7 @@ async function createNpmrc() {
     "public-hoist-pattern[] = prettier2",
   ];
 
-  const npmrcPath = path.join(process.cwd(), ".npmrc");
+  const npmrcPath = path.join(cwd(), ".npmrc");
 
   try {
     await promises.writeFile(npmrcPath, npmrcContent.join("\n"));

@@ -1,5 +1,6 @@
 import fs from "fs";
 import path from "path";
+import { cwd } from "node:process";
 import { readFile } from "fs/promises";
 import esbuild from "esbuild";
 
@@ -7,8 +8,7 @@ const CACHE_PATH = "./node_modules/.cache/vueless";
 const WEB_TYPES_CONFIG_FILE_NAME = "web-types.config";
 
 export async function extractConfig() {
-  const cwd = process.cwd();
-  const fileContent = await readFile(path.join(cwd, "package.json"), "utf-8");
+  const fileContent = await readFile(path.join(cwd(), "package.json"), "utf-8");
   const packageJson = JSON.parse(fileContent);
 
   const config = await getConfig();
@@ -18,7 +18,7 @@ export async function extractConfig() {
     : ["node_modules/vueless/**/*.vue", "src/components/**/*.vue"];
 
   return {
-    cwd,
+    cwd: cwd(),
     components,
     outFile: `${CACHE_PATH}/web-types.json`,
     packageName: packageJson["name"],
@@ -30,9 +30,9 @@ export async function extractConfig() {
 }
 
 async function getConfig() {
-  const configPathJs = path.resolve(process.cwd(), `${WEB_TYPES_CONFIG_FILE_NAME}.js`);
-  const configPathTs = path.resolve(process.cwd(), `${WEB_TYPES_CONFIG_FILE_NAME}.ts`);
-  const configOutPath = path.join(process.cwd(), `${CACHE_PATH}/${WEB_TYPES_CONFIG_FILE_NAME}.mjs`);
+  const configPathJs = path.resolve(cwd(), `${WEB_TYPES_CONFIG_FILE_NAME}.js`);
+  const configPathTs = path.resolve(cwd(), `${WEB_TYPES_CONFIG_FILE_NAME}.ts`);
+  const configOutPath = path.join(cwd(), `${CACHE_PATH}/${WEB_TYPES_CONFIG_FILE_NAME}.mjs`);
 
   let config = {};
 
