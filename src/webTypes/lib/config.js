@@ -6,24 +6,20 @@ import esbuild from "esbuild";
 const CACHE_PATH = "./node_modules/.cache/vueless";
 const WEB_TYPES_CONFIG_FILE_NAME = "web-types.config";
 
-export async function extractConfig(cwd, watch = false, configFileFromCmd) {
+export async function extractConfig() {
+  const cwd = process.cwd();
   const fileContent = await readFile(path.join(cwd, "package.json"), "utf-8");
   const packageJson = JSON.parse(fileContent);
 
-  const config = await getConfig(configFileFromCmd);
+  const config = await getConfig();
 
   const components = config?.isVuelessEnv
-    ? [`${process.cwd()}/src/**/*.vue`]
-    : [
-        `${process.cwd()}/node_modules/vueless/**/*.vue`,
-        `${process.cwd()}/src/components/**/*.vue`,
-      ];
+    ? ["src/**/*.vue"]
+    : ["node_modules/vueless/**/*.vue", "src/components/**/*.vue"];
 
   return {
     cwd,
-    watch,
     components,
-    componentsRoot: cwd,
     outFile: `${CACHE_PATH}/web-types.json`,
     packageName: packageJson["name"],
     packageVersion: packageJson["version"],
@@ -33,8 +29,7 @@ export async function extractConfig(cwd, watch = false, configFileFromCmd) {
   };
 }
 
-async function getConfig(configFromCmd) {
-  const configPathFromCmd = configFromCmd && path.resolve(process.cwd(), configFromCmd);
+async function getConfig() {
   const configPathJs = path.resolve(process.cwd(), `${WEB_TYPES_CONFIG_FILE_NAME}.js`);
   const configPathTs = path.resolve(process.cwd(), `${WEB_TYPES_CONFIG_FILE_NAME}.ts`);
   const configOutPath = path.join(process.cwd(), `${CACHE_PATH}/${WEB_TYPES_CONFIG_FILE_NAME}.mjs`);
@@ -47,7 +42,6 @@ async function getConfig(configFromCmd) {
 
   fs.existsSync(configPathJs) && (await buildConfig(configPathJs, configOutPath));
   fs.existsSync(configPathTs) && (await buildConfig(configPathTs, configOutPath));
-  fs.existsSync(configPathFromCmd) && (await buildConfig(configPathFromCmd, configPathFromCmd));
 
   if (fs.existsSync(configOutPath)) {
     config = (await import(configOutPath)).default;

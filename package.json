@@ -38,7 +38,6 @@
     "chokidar": "^4.0.3",
     "esbuild": "^0.24.2",
     "globby": "^14.0.2",
-    "minimist": "^1.2.8",
     "mkdirp": "^3.0.1",
     "prettier2": "npm:prettier@2.8.8",
     "storybook": "^8.4.7",

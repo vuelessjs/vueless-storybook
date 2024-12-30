@@ -8,10 +8,9 @@ import { parse } from "vue-docgen-api";
 import _ from "lodash-es";
 
 export default async function build(config, vuelessConfig) {
-  config.componentsRoot = path.resolve(config.cwd, config.componentsRoot);
   config.outFile = path.resolve(config.cwd, config.outFile);
 
-  const { watcher, componentFiles } = getSources(config.components, config.componentsRoot);
+  const { watcher, componentFiles } = getSources(config.components, config.cwd);
 
   const cache = {};
   const buildWebTypesBound = rebuild.bind(null, config, componentFiles, cache, vuelessConfig);
@@ -26,20 +25,7 @@ export default async function build(config, vuelessConfig) {
     return;
   }
 
-  if (config.watch) {
-    watcher
-      .on("add", buildWebTypesBound)
-      .on("change", buildWebTypesBound)
-      .on("unlink", async (filePath) => {
-        // eslint-disable-next-line no-console
-        console.log("Rebuilding on file removal " + filePath);
-
-        delete cache[filePath];
-        await writeDownWebTypesFile(config, Object.values(cache), config.outFile);
-      });
-  } else {
-    await watcher.close();
-  }
+  await watcher.close();
 }
 
 function getSources(components, cwd) {
