@@ -11,7 +11,7 @@ const parsedArgs = parseArgs(args);
 
 const __dirname = path.dirname(new URL(import.meta.url).pathname);
 const source = path.join(__dirname, ".storybook");
-const target = path.join(cwd(), ".storybook-backup");
+const target = path.join(cwd(), ".storybook");
 
 copyStorybookPreset(source, target);
 
@@ -24,7 +24,7 @@ if (parsedArgs.pnpm) {
 function copyStorybookPreset(source, target) {
   if (fs.existsSync(target)) {
     const timestamp = new Date().valueOf();
-    const renamedTarget = `${target}-${timestamp}`;
+    const renamedTarget = `${target}-backup-${timestamp}`;
 
     fs.renameSync(target, renamedTarget);
     console.log(`Renamed existing ${path.basename(target)} to ${path.basename(renamedTarget)}`);
