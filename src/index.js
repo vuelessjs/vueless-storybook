@@ -21,13 +21,17 @@ if (parsedArgs.pnpm) {
   await createNpmrc();
 }
 
-function copyStorybookPreset(source, target) {
+function copyStorybookPreset(source, target, { consoles = true } = {}) {
   if (fs.existsSync(target)) {
     const timestamp = new Date().valueOf();
     const renamedTarget = `${target}-backup-${timestamp}`;
 
     fs.renameSync(target, renamedTarget);
-    console.log(`Renamed existing ${path.basename(target)} to ${path.basename(renamedTarget)}`);
+
+    coloredConsole(
+      "yellow",
+      `Current Storybook preset backed into : '${path.basename(renamedTarget)}' folder. Don't forget to remove it before commit.`,
+    );
   }
 
   fs.mkdirSync(target, { recursive: true });
@@ -40,9 +44,16 @@ function copyStorybookPreset(source, target) {
     const stat = fs.lstatSync(srcFile);
 
     stat.isDirectory()
-      ? copyStorybookPreset(srcFile, destFile)
+      ? copyStorybookPreset(srcFile, destFile, { consoles: false })
       : fs.copyFileSync(srcFile, destFile);
   });
+
+  if (consoles) {
+    coloredConsole(
+      "green",
+      `Storybook preset successfully saved into '${path.basename(target)}' folder.`,
+    );
+  }
 }
 
 async function addStorybookCommands() {
@@ -95,4 +106,29 @@ function parseArgs(args) {
   });
 
   return result;
+}
+
+function coloredConsole(color, message) {
+  let coloredMessage = message;
+
+  if (color === "green") {
+    coloredMessage = `\x1b[32m${message}\x1b[0m`;
+  }
+
+  if (color === "yellow") {
+    coloredMessage = `\x1b[33m${message}\x1b[0m`;
+  }
+
+  if (color === "red") {
+    coloredMessage = `\x1b[31m${message}\x1b[0m`;
+  }
+
+  /* Remove spaces and tabs around each line. */
+  coloredMessage
+    .trim()
+    .split("\n")
+    .map((line) => line.trim())
+    .join("\n");
+
+  return console.log(coloredMessage);
 }
