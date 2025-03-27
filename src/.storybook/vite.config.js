@@ -5,7 +5,7 @@ import Vue from "@vitejs/plugin-vue";
 import { Vueless, TailwindCSS } from "vueless/plugin-vite";
 
 export default defineConfig({
-  plugins: [Vue(), TailwindCSS(), Vueless({ mode: "storybook", env: "vueless", debug: false })],
+  plugins: [Vue(), TailwindCSS(), Vueless({ mode: "storybook", debug: false })],
   optimizeDeps: {
     include: [
       "cva",
