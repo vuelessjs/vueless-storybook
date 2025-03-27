@@ -19,28 +19,30 @@
     "lint": "eslint --ext .vue,.js,.ts --no-fix --ignore-path .eslintignore src/",
     "lint:fix": "eslint --ext .vue,.js,.ts --fix --ignore-path .eslintignore src/",
     "lint:ci": "eslint --ext .vue,.js,.ts --no-fix --ignore-path .eslintignore --max-warnings=0",
+    "release:prepare": "rm -rf dist && mkdir -p dist && cp -r src/. package.json LICENSE README.md dist/",
+    "release:beta": "release-it --ci --npm.publish --preRelease=beta --increment=prerelease",
     "release:patch": "release-it patch --ci --npm.publish",
     "release:minor": "release-it minor --ci --npm.publish --git.tag --github.release",
-    "release:major": "release-it major --ci --npm.publish --git.tag --github.release",
-    "package:prepare": "rm -rf dist && mkdir -p dist && cp -r src/. package.json LICENSE README.md dist/"
+    "release:major": "release-it major --ci --npm.publish --git.tag --github.release"
+
   },
   "dependencies": {
-    "@storybook/addon-essentials": "^8.4.7",
-    "@storybook/addon-interactions": "^8.4.7",
-    "@storybook/addon-links": "^8.4.7",
-    "@storybook/addon-themes": "^8.4.7",
-    "@storybook/blocks": "^8.4.7",
-    "@storybook/manager-api": "^8.4.7",
-    "@storybook/test": "^8.4.7",
-    "@storybook/theming": "^8.4.7",
-    "@storybook/vue3": "^8.4.7",
-    "@storybook/vue3-vite": "^8.4.7",
+    "@storybook/addon-essentials": "^8.6.10",
+    "@storybook/addon-interactions": "^8.6.10",
+    "@storybook/addon-links": "^8.6.10",
+    "@storybook/addon-themes": "^8.6.10",
+    "@storybook/blocks": "^8.6.10",
+    "@storybook/manager-api": "^8.6.10",
+    "@storybook/test": "^8.6.10",
+    "@storybook/theming": "^8.6.10",
+    "@storybook/vue3": "^8.6.10",
+    "@storybook/vue3-vite": "^8.6.10",
     "chokidar": "^4.0.3",
     "esbuild": "^0.24.2",
     "globby": "^14.0.2",
     "mkdirp": "^3.0.1",
     "prettier2": "npm:prettier@2.8.8",
-    "storybook": "^8.4.7",
+    "storybook": "^8.6.10",
     "storybook-dark-mode": "^4.0.2",
     "vue-docgen-api": "^4.79.2"
   },
@@ -53,8 +55,9 @@
     "prettier": "^3.2.5",
     "prettier-eslint": "^16.3.0",
     "release-it": "^17.2.1",
+    "tailwindcss": "^4.0.17",
     "vue-router": "^4.3.2",
-    "vueless": "^0.0.692"
+    "vueless": "^0.0.825-beta.36"
   },
   "resolutions": {
     "jackspeak": "2.3.6"

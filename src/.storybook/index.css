@@ -1,8 +1,6 @@
-@config "./tailwind.config.js";
+@import "tailwindcss";
+@import "vueless";
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 
 /* -------------------- Storybook Preview UI -------------------- */
 /* -------------------- General -------------------- */
@@ -16,7 +14,7 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply rounded-sm transition;
+  @apply rounded-xs transition;
 }
 
 .light::-webkit-scrollbar-track,
@@ -59,6 +57,10 @@ html.light {
   @apply bg-gray-50;
 }
 
+html.vl-dark #storybook-root {
+  @apply bg-gray-900;
+}
+
 body {
   font-family: Roboto, sans-serif;
 }
@@ -68,6 +70,7 @@ body {
 .light .sbdocs .sbdocs-content > h3,
 .light .sbdocs .sbdocs-content > .sb-anchor > h3,
 .light .sbdocs .sbdocs-content > .sb-anchor > p,
+.light .sbdocs .sbdocs-content > ul > li,
 .light .sbdocs .sbdocs-content > p,
 .light .sbdocs .sbdocs-content > table th,
 .light .sbdocs .sbdocs-content > table td {
@@ -79,6 +82,7 @@ body {
 .dark .sbdocs .sbdocs-content > h3,
 .dark .sbdocs .sbdocs-content > .sb-anchor > h3,
 .dark .sbdocs .sbdocs-content > .sb-anchor > p,
+.dark .sbdocs .sbdocs-content > :not(.sb-anchor) ul > li,
 .dark .sbdocs .sbdocs-content > p,
 .dark .sbdocs .sbdocs-content > table th,
 .dark .sbdocs .sbdocs-content > table td {
@@ -149,7 +153,7 @@ body {
 }
 
 .light .sb-argstableBlock-body {
-  @apply rounded;
+  @apply rounded-sm;
   box-shadow: rgb(0 0 0 / 5%) 0 1px 3px 1px, rgb(0 0 0 / 4%) 0 0 0 1px;
 }
 
@@ -186,7 +190,7 @@ body {
 }
 
 .dark .sb-argstableBlock-body {
-  @apply rounded;
+  @apply rounded-sm;
   box-shadow: rgb(255 255 255 / 10%) 0 1px 3px 1px, rgb(255 255 255 / 7%) 0 0 0 1px;
 }
 
@@ -229,10 +233,12 @@ body {
 }
 
 .vl-dark .sb-bar,
-.vl-dark .docs-story {
-  @apply bg-gray-900;
+.vl-dark .docs-story,
+.vl-dark .docs-story + div {
+  @apply !bg-gray-900;
 }
 
+/* prevents showing scrollbar in buttons stories */
 .docs-story > div > div {
   @apply mb-px;
 }
@@ -256,10 +262,35 @@ body {
 }
 
 .vl-dark .docblock-code-toggle {
-  @apply bg-gray-800 border-gray-800 text-gray-400 rounded-tl-none;
+  @apply bg-gray-800 border-gray-800 text-gray-400;
+}
+
+.vl-light .docblock-code-toggle {
+  @apply !border border-gray-300;
+}
+
+.vl-dark .docblock-code-toggle {
+  @apply !border border-gray-700;
+}
+
+.docblock-code-toggle,
+.docblock-source > div > button,
+.docs-story > div > button,
+.docs-story + div > div > button {
+  margin: 0 4px 4px 0 !important;
+  border-radius: 8px !important;
+  box-shadow: none !important;
+}
+
+.docblock-code-toggle,
+.docblock-source > div,
+.docs-story > div,
+.docs-story + div > div {
+  background: transparent !important;
 }
 
 .sbdocs-preview {
+  border-radius: 8px !important;
   box-shadow: none !important;
 }
 
@@ -336,11 +367,14 @@ body {
 .dark .docblock-argstable-body tr > td:nth-child(3) > div > span[class],
 .dark .docblock-argstable-body tr > td:nth-child(3) > span[class] {
   @apply bg-gray-800 border-gray-700/50 text-gray-400;
+  border-radius: 4px !important;
+
 }
 
 .dark .sb-story code,
 .light .sb-story code {
   @apply !bg-inherit !text-inherit;
+  border-radius: 4px !important;
 }
 
 .dark .docblock-argstable-body tr > td > div + div > span:not([class]) {
@@ -423,8 +457,9 @@ body {
 }
 
 .docblock-source {
-  @apply !bg-gray-800 border-gray-800 !rounded-lg;
+  @apply !bg-gray-800 border-gray-800;
   box-shadow: none !important;
+  border-radius: 8px !important;
 }
 
 .dark .docblock-source {
