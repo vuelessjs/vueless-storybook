@@ -1,6 +1,6 @@
 {
   "name": "@vueless/storybook",
-  "version": "0.0.74",
+  "version": "0.0.75-beta.0",
   "description": "Simplifies Storybook configuration for Vueless UI library.",
   "homepage": "https://vueless.com",
   "author": "Johnny Grid",
@@ -24,7 +24,6 @@
     "release:patch": "release-it patch --ci --npm.publish",
     "release:minor": "release-it minor --ci --npm.publish --git.tag --github.release",
     "release:major": "release-it major --ci --npm.publish --git.tag --github.release"
-
   },
   "dependencies": {
     "@storybook/addon-essentials": "^8.6.10",
