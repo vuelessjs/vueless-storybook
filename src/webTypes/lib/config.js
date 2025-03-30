@@ -15,7 +15,7 @@ export async function extractConfig() {
 
   const components = config?.isVuelessEnv
     ? ["src/**/*.vue"]
-    : ["node_modules/vueless/**/*.vue", "src/components/**/*.vue"];
+    : ["node_modules/vueless/**/*.vue", "src/components/**/*.vue", ".vueless/components/**/*.vue"];
 
   return {
     cwd: cwd(),
