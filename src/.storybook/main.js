@@ -5,7 +5,8 @@ export default {
     "../node_modules/vueless/**/docs.mdx",
     /* Define a path to your own component stories. */
     // "../src/**/stories.{js,jsx,ts,tsx}",
-    // "../src/**/docs.mdx"],
+    // "../src/**/docs.mdx",
+  ],
   addons: [
     "@storybook/addon-links",
     "@storybook/addon-essentials",
