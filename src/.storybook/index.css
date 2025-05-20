@@ -579,6 +579,20 @@ body {
   border-top-left-radius: 0;    /* rounded-tl-none */
 }
 
+.dark a.sbdocs.sbdocs-a {
+  color: #6b7280; /* text-gray-500 */
+}
+
+.light a.sbdocs.sbdocs-a {
+  color: #6b7280; /* text-gray-500 */
+}
+
+.light a.sbdocs.sbdocs-a:hover,
+.dark a.sbdocs.sbdocs-a:hover{
+  text-decoration: underline dashed #6b7280; /* text-gray-500 */
+  text-underline-offset: 3px;
+}
+
 /* -------------------- Storybook story preview -------------------- */
 
 .vl-dark {
