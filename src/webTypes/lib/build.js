@@ -7,8 +7,9 @@ import { globbySync } from "globby";
 import { parse } from "vue-docgen-api";
 import _ from "lodash-es";
 
-export default async function build(config, vuelessConfig) {
+export default async function build(config, vuelessConfig, srcDir) {
   config.outFile = path.resolve(config.cwd, config.outFile);
+  config.srcDir = srcDir;
 
   const { watcher, componentFiles } = getSources(config.components, config.cwd);
 
@@ -137,7 +138,7 @@ function getType(prop) {
 async function extractInformation(absolutePath, config, vuelessConfig) {
   const doc = await parse(config.cwd + "/" + absolutePath, {
     /* Allow to parse vueless components from node_modules. */
-    validExtends: (filePath) => filePath.includes("node_modules/vueless/"),
+    validExtends: (filePath) => filePath.includes(config.srcDir),
     ...config.apiOptions,
   });
   const name = doc.name || doc.displayName;
