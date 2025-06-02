@@ -36,7 +36,6 @@
     "mkdirp": "^3.0.1",
     "prettier2": "npm:prettier@2.8.8",
     "storybook": "9.0.4",
-    "storybook-dark-mode": "^4.0.2",
     "vue-docgen-api": "^4.79.2"
   },
   "devDependencies": {
