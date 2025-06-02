@@ -8,10 +8,10 @@ export default {
     // "../src/**/docs.mdx",
   ],
   addons: [
+    "@storybook/addon-docs",
     "@storybook/addon-links",
-    "storybook-dark-mode",
+    "@vueless/storybook-dark-mode",
     "@storybook/addon-themes",
-    "@storybook/addon-docs"
   ],
   framework: {
     name: "@storybook/vue3-vite",
