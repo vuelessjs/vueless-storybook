@@ -51,7 +51,7 @@
     "tailwindcss": "^4.1.7",
     "vue": "^3.5.16",
     "vue-router": "^4.5.1",
-    "vueless": "^0.0.825-beta.169"
+    "vueless": "^1.0.0"
   },
   "overrides": {
     "vue-docgen-api": {
