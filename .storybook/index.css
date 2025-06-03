@@ -265,19 +265,12 @@ body {
   margin-top: 0.5rem; /* mt-2 */
 }
 
-.sb-anchor > p {
-  margin-top: -0.5rem; /* mt-2 */
-  margin-bottom: -0.5rem; /* -mt-2 */
-}
-
 .dark .sb-anchor > p > a {
   color: #4ade80; /* text-green-400 */
-  text-decoration: underline dashed #4ade80;
 }
 
 .light .sb-anchor > p > a {
   color: #16a34a; /* text-green-600 */
-  text-decoration: underline dashed #16a34a;
 }
 
 .sb-bar,

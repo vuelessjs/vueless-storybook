@@ -1,10 +1,8 @@
 import { addons, makeDecorator, useArgs } from "storybook/preview-api";
-import { SNIPPET_RENDERED } from "storybook/internal/docs-tools";
 import { h, onMounted, watch } from "vue";
 
 const params = new URLSearchParams(window.location.search);
 let previousStoryId = null;
-let previousArgs = {};
 
 function getArgsFromUrl(storyId) {
   const isInIframe = params.toString().includes("globals=");
@@ -25,7 +23,6 @@ export const vue3SourceDecorator = makeDecorator({
     const story = storyFn(context);
     const [, updateArgs] = useArgs();
     const urlArgs = getArgsFromUrl(context.id);
-    const channel = addons.getChannel();
 
     previousStoryId = context.id;
 
@@ -38,25 +35,13 @@ export const vue3SourceDecorator = makeDecorator({
         onMounted(async () => {
           updateArgs({ ...context.args, ...urlArgs });
 
-          /* override default code snippet by optimized ones */
-          setTimeout(setSourceCode, 500);
-
-          /* rerender code snippet by optimized ones */
-          channel.on(SNIPPET_RENDERED, async (payload) => {
-            if (payload.source.includes(`<script lang="ts" setup>`)) {
-              await setSourceCode();
-            }
-          });
+          await setSourceCode();
         });
 
         watch(
           context.args,
-          async (newArgs) => {
-            if (JSON.stringify(previousArgs) === JSON.stringify(newArgs)) return;
-
-            previousArgs = { ...newArgs };
+          async () => {
             updateArgs({ ...context.args });
-
             await setSourceCode();
           },
           { deep: true },
@@ -66,6 +51,8 @@ export const vue3SourceDecorator = makeDecorator({
           try {
             const src = context.originalStoryFn(context.args, context.argTypes).template;
             const code = preFormat(src, context.args, context.argTypes);
+
+            const channel = addons.getChannel();
 
             const emitFormattedTemplate = async () => {
               const prettier = await import("prettier2");
@@ -77,8 +64,8 @@ export const vue3SourceDecorator = makeDecorator({
                 htmlWhitespaceSensitivity: "ignore",
               });
 
-              // emits an event when the transformation is completed and content rendered
-              channel.emit(SNIPPET_RENDERED, {
+              // emits an event when the transformation is completed
+              channel.emit("storybook/docs/snippet-rendered", {
                 id: context.id,
                 args: context.args,
                 source: postFormat(formattedCode),
@@ -137,9 +124,7 @@ function preFormat(templateSource, args, argTypes) {
     // eslint-disable-next-line vue/max-len
     `</template><template v-else-if="slot === 'default' && args['defaultSlot']">{{ args['defaultSlot'] }}</template><template v-else-if="args[slot + 'Slot']">{{ args[slot + 'Slot'] }}</template></template>`;
 
-  const modelValue = isPrimitive(args["modelValue"])
-    ? JSON.stringify(args["modelValue"])?.replaceAll('"', "")
-    : JSON.stringify(args["modelValue"])?.replaceAll('"', "'");
+  const modelValue = JSON.stringify(args["modelValue"])?.replaceAll('"', "'");
 
   templateSource = templateSource
     .replace(/>[\s]+</g, "><")
@@ -274,15 +259,14 @@ function generateEnumAttributes(args, option) {
 
   return enumKeys
     .map((key) => {
-      return key in args && !isPrimitive(args[key])
+      const isNotPrimitive =
+        Object.keys(args[key] || {}).length || (Array.isArray(args[key]) && args[key].length);
+
+      return key in args && isNotPrimitive
         ? `${key}="${JSON.stringify(args[key]).replaceAll('"', "'").replaceAll("{enumValue}", option)}"`
         : `${key}="${option}"`;
     })
     .join(" ");
-}
-
-function isPrimitive(value) {
-  return !(value && (typeof value === "object" || Array.isArray(value)));
 }
 
 function propToSource(key, val, argType) {
