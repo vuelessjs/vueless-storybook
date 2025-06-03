@@ -1,24 +1,35 @@
-name: Vueless Storybook publish
+name: Release
 
 on:
-  push:
-    branches: [ main ]
+  workflow_dispatch:
+    inputs:
+      release_type:
+        description: 'Type of release'
+        required: true
+        type: choice
+        options:
+          - patch
+          - minor
+          - major
 
 permissions: write-all
 
 jobs:
   lint:
+    name: 'Lint'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           cache: 'npm'
       - run: npm ci
       - run: npm run lint:ci
 
-  publish-npm:
+  release:
+    name: "Release: ${{ github.event.inputs.release_type }}"
+    if: github.ref_name == 'main'
     needs: lint
     runs-on: ubuntu-latest
     steps:
@@ -27,7 +38,7 @@ jobs:
           fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           cache: 'npm'
           registry-url: https://registry.npmjs.org/
       - name: git config
@@ -36,7 +47,7 @@ jobs:
           git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
       - run: npm ci
       - run: npm run release:prepare
-      - run: npm run release:patch
+      - run: npm run release:${{ github.event.inputs.release_type }}
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

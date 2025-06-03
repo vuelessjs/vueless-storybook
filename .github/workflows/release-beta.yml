@@ -1,4 +1,4 @@
-name: Vueless Storybook publish (beta)
+name: Release (Beta)
 
 on:
   push:
@@ -8,19 +8,19 @@ permissions: write-all
 
 jobs:
   lint:
-    if: "!contains(github.event.head_commit.message, 'GITBOOK')"
+    name: 'Lint'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           cache: 'npm'
       - run: npm ci
       - run: npm run lint:ci
 
-  publish-npm:
-    if: "!contains(github.event.head_commit.message, 'GITBOOK')"
+  release-beta:
+    name: 'Release: beta'
     needs: lint
     runs-on: ubuntu-latest
     steps:
@@ -29,7 +29,7 @@ jobs:
           fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           cache: 'npm'
           registry-url: https://registry.npmjs.org/
       - name: git config
