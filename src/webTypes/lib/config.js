@@ -45,7 +45,9 @@ async function getConfig() {
   fs.existsSync(configPathTs) && (await buildConfig(configPathTs, configOutPath));
 
   if (fs.existsSync(configOutPath)) {
-    config = (await import(pathToFileURL(configOutPath))).default;
+    const configModule = await import(pathToFileURL(configOutPath));
+
+    config = configModule.default;
   }
 
   return config;
