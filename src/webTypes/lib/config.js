@@ -2,6 +2,7 @@ import fs from "fs";
 import path from "path";
 import { cwd } from "node:process";
 import { readFile } from "fs/promises";
+import { pathToFileURL } from "node:url";
 import esbuild from "esbuild";
 
 const CACHE_PATH = "./node_modules/.cache/vueless";
@@ -44,7 +45,7 @@ async function getConfig() {
   fs.existsSync(configPathTs) && (await buildConfig(configPathTs, configOutPath));
 
   if (fs.existsSync(configOutPath)) {
-    config = (await import(configOutPath)).default;
+    config = (await import(pathToFileURL(configOutPath))).default;
   }
 
   return config;
