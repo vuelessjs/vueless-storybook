@@ -1,5 +1,3 @@
-import { resolve } from "node:path";
-
 /** @type { import('@storybook/vue3-vite').StorybookConfig } */
 export default {
   stories: [
@@ -12,7 +10,7 @@ export default {
   addons: [
     "@storybook/addon-docs",
     "@storybook/addon-links",
-    resolve(__dirname, "./addons/storybook-dark-mode/preset/manager.tsx"),
+    "@vueless/storybook-dark-mode",
     "@storybook/addon-themes",
   ],
   framework: {

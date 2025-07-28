@@ -64,7 +64,7 @@ function copyStorybookPreset(source, target, { consoles = true } = {}) {
 async function addStorybookCommands() {
   try {
     const storybookCommands = {
-      "sb:dev": "STORYBOOK_FULL=1 storybook dev -p 6006 --no-open",
+      "sb:dev": "storybook dev -p 6006 --no-open",
       "sb:dev:docs": "storybook dev -p 6006 --docs --no-open",
       "sb:build": "storybook build --docs",
       "sb:preview": "vite preview --host --outDir=storybook-static",

@@ -1,6 +1,6 @@
 {
   "name": "@vueless/storybook",
-  "version": "1.0.0",
+  "version": "1.0.1-beta.3",
   "description": "Simplifies Storybook configuration for Vueless UI library.",
   "homepage": "https://vueless.com",
   "author": "Johnny Grid",
@@ -26,17 +26,17 @@
     "release:major": "release-it major --ci --npm.publish --git.tag --github.release"
   },
   "dependencies": {
-    "@storybook/addon-docs": "9.0.4",
-    "@storybook/addon-links": "9.0.4",
-    "@storybook/addon-themes": "9.0.4",
-    "@storybook/vue3-vite": "9.0.4",
-    "@vueless/storybook-dark-mode": "^9.0.2",
+    "@storybook/addon-docs": "9.0.18",
+    "@storybook/addon-links": "9.0.18",
+    "@storybook/addon-themes": "9.0.18",
+    "@storybook/vue3-vite": "9.0.18",
+    "@vueless/storybook-dark-mode": "^9.0.6",
     "chokidar": "^4.0.3",
     "esbuild": "^0.25.5",
     "globby": "^14.1.0",
     "mkdirp": "^3.0.1",
     "prettier2": "npm:prettier@2.8.8",
-    "storybook": "9.0.4",
+    "storybook": "9.0.18",
     "vue-docgen-api": "^4.79.2"
   },
   "devDependencies": {
