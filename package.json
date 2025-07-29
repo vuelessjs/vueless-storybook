@@ -2,15 +2,13 @@
   "name": "@vueless/storybook",
   "version": "1.1.2",
   "description": "Simplifies Storybook configuration for Vueless UI library.",
+  "author": "Johnny Grid <hello@vueless.com> (https://vueless.com)",
   "homepage": "https://vueless.com",
-  "author": "Johnny Grid",
   "license": "MIT",
-  "type": "module",
   "main": "index.js",
-  "private": false,
+  "type": "module",
   "publishConfig": {
-    "access": "public",
-    "registry": "https://registry.npmjs.org/"
+    "access": "public"
   },
   "bin": {
     "copy": "./index.js"
