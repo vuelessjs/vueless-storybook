@@ -1,6 +1,6 @@
 {
   "name": "@vueless/storybook",
-  "version": "1.0.1-beta.3",
+  "version": "1.0.1-beta.4",
   "description": "Simplifies Storybook configuration for Vueless UI library.",
   "homepage": "https://vueless.com",
   "author": "Johnny Grid",
