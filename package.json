@@ -21,7 +21,7 @@
     "lint:ci": "eslint --ext .vue,.js,.ts --no-fix --ignore-path .eslintignore --max-warnings=0",
     "release:prepare": "rm -rf dist && mkdir -p dist && cp -r src/. package.json LICENSE README.md dist/",
     "release:beta": "release-it --ci --npm.publish --preRelease=beta --increment=prerelease",
-    "release:patch": "release-it patch --ci --npm.publish",
+    "release:patch": "release-it patch --ci --npm.publish --git.tag --github.release",
     "release:minor": "release-it minor --ci --npm.publish --git.tag --github.release",
     "release:major": "release-it major --ci --npm.publish --git.tag --github.release"
   },
