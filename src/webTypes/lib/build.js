@@ -138,7 +138,7 @@ function getType(prop) {
 async function extractInformation(absolutePath, config, vuelessConfig) {
   const doc = await parse(config.cwd + "/" + absolutePath, {
     /* Allow to parse vueless components from node_modules. */
-    validExtends: (filePath) => filePath.includes(config.srcDir) || filePath.includes("vueless"),
+    validExtends: (filePath) => filePath.replace(/\\/g, "/").includes(config.srcDir),
     ...config.apiOptions,
   });
   const name = doc.name || doc.displayName;
