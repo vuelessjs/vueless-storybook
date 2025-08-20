@@ -1,4 +1,3 @@
-/* eslint-disable storybook/no-uninstalled-addons */
 /** @type { import('@storybook/vue3-vite').StorybookConfig } */
 import { defineConfigWithVueless } from "vueless/utils/node/storybook.js";
 

@@ -31,6 +31,7 @@ function copyStorybookPreset(source, target, { consoles = true } = {}) {
 
     const warnMessage = styleText(
       "yellow",
+      // eslint-disable-next-line vue/max-len
       `Current Storybook preset backed into : '${path.basename(renamedTarget)}' folder. Don't forget to remove it before commit.`,
     );
 
