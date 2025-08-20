@@ -1,5 +1,25 @@
+![vueless-examples.png](public/images/storybook-demo.png)
+
 # Vueless Storybook preset
 
-The package simplifies Storybook configuration for `vueless` UI library.
+Zero config preset to launch a tailored Storybook instance for a [Vueless](https://github.com/vuelessjs/vueless) UI library.
 
-[Documentation](https://docs.vueless.com/advanced/local-storybook-docs)
+[Documentation](https://docs.vueless.com/installation/storybook/) | [Demo](https://ui.vueless.com/) | [About Vueless UI](http://vueless.com/)
+
+## Installation
+
+```bash
+npm install @vueless/storybook
+```
+
+## Contributing
+
+* We encourage you to contribute to Vueless! Please check out the
+  [contributing to Vueless](CONTRIBUTING.md) for guidelines.
+* Trying to report a possible security vulnerability in Vueless? Please
+  check out our [security policy](SECURITY.md) for guidelines.
+* Everyone interacting in Vueless and its sub-projects' codebases, issue trackers, chats, and mailing lists is expected to follow our [code of conduct](CODE_OF_CONDUCT.md) rules.
+
+## License
+
+Vueless is released under the [MIT License](https://opensource.org/licenses/MIT).
