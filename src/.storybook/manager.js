@@ -1,6 +1,9 @@
 import { addons } from "storybook/manager-api";
-import themeLight from "./themes/themeLight.js";
+
+/* Theme styles */
+import "./themes/manager.css";
 import themeDark from "./themes/themeDark.js";
+import themeLight from "./themes/themeLight.js";
 
 const prefersColorSchemeDark = window.matchMedia("(prefers-color-scheme: dark)");
 

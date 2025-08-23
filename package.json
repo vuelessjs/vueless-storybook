@@ -11,7 +11,7 @@
     "access": "public"
   },
   "bin": {
-    "copy": "./index.js"
+    "copy": "./bin/index.js"
   },
   "scripts": {
     "lint": "eslint --no-fix src/",
@@ -51,7 +51,7 @@
     "tailwindcss": "^4.1.12",
     "vue": "latest",
     "vue-router": "latest",
-    "vueless": "^1.1.1-beta.56"
+    "vueless": "^1.2.0"
   },
   "overrides": {
     "vue-docgen-api": {
