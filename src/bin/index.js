@@ -7,7 +7,7 @@ import { styleText } from "node:util";
 import fs, { promises } from "node:fs";
 
 const __dirname = path.dirname(new URL(import.meta.url).pathname);
-const source = path.join(__dirname, ".storybook");
+const source = path.join(__dirname, "..", ".storybook");
 const target = path.join(cwd(), ".storybook");
 
 copyStorybookPreset(source, target);
