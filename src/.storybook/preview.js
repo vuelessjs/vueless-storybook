@@ -8,9 +8,6 @@ import themeDark from "./themes/themeDark.js";
 import themeLight from "./themes/themeLight.js";
 import themeLightPreview from "./themes/themeLightPreview.js";
 
-/* Tailwind styles */
-import "./index.css";
-
 /* Vue plugins */
 import { createVueless } from "vueless";
 import { createRouter, createWebHistory } from "vue-router";
@@ -29,7 +26,7 @@ setup((app) => {
 });
 
 /* Set storybook decorators */
-export const decorators = [vue3SourceDecorator, storyDarkModeDecorator()];
+export const decorators = [vue3SourceDecorator, storyDarkModeDecorator];
 
 /* Set storybook tags */
 export const tags = ["autodocs"];
