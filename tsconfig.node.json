@@ -1,7 +1,7 @@
 {
-  "extends": "@tsconfig/node20/tsconfig.json",
   "include": [
-    "src/.storybook-ts/vite.config.ts",
+    "src/bin/**/*",
+    "src/webTypes/**/*",
   ],
   "compilerOptions": {
     "module": "ESNext",
