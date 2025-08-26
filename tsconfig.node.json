@@ -1,0 +1,19 @@
+{
+  "extends": "@tsconfig/node20/tsconfig.json",
+  "include": [
+    "src/.storybook-ts/vite.config.ts",
+  ],
+  "compilerOptions": {
+    "module": "ESNext",
+    "noEmit": true,
+    "composite": true,
+    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.node.tsbuildinfo",
+    "moduleResolution": "Bundler",
+
+    /* Custom types. */
+    "types": [
+      "node",
+    ]
+  },
+
+}
