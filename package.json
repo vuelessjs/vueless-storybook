@@ -56,7 +56,7 @@
     "vue": "latest",
     "vue-router": "latest",
     "vue-tsc": "^3.0.6",
-    "vueless": "^1.2.1-beta.2"
+    "vueless": "^1.2.2"
   },
   "overrides": {
     "vue-docgen-api": {
