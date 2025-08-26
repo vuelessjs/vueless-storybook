@@ -34,7 +34,7 @@ function copyStorybookPreset(source, target, { consoles = true } = {}) {
 
     const warnMessage = styleText(
       "yellow",
-      `Current Storybook preset backed into : '${path.basename(renamedTarget)}' folder. Remove it before commit.`,
+      `Current Storybook preset backed into: '${path.basename(renamedTarget)}' folder. Remove it before commit.`,
     );
 
     console.log(warnMessage);
