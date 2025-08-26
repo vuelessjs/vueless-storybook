@@ -8,6 +8,11 @@
     "composite": true,
     "tsBuildInfoFile": "./node_modules/.tmp/storybookTsconfig.node.tsbuildinfo",
     "moduleResolution": "Bundler",
+
+    /* Custom types. */
+    "types": [
+      "node",
+    ]
   },
 
 }
