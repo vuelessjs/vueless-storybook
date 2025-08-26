@@ -5,12 +5,16 @@ import path from "node:path";
 import { cwd } from "node:process";
 import { styleText } from "node:util";
 import fs, { promises } from "node:fs";
+import { detectTypeScript } from "vueless/utils/node/helper.js";
 
 const __dirname = path.dirname(new URL(import.meta.url).pathname);
-const source = path.join(__dirname, "..", ".storybook");
+const sourceTs = path.join(__dirname, "..", ".storybook-ts");
+const sourceJs = path.join(__dirname, "..", ".storybook-js");
 const target = path.join(cwd(), ".storybook");
 
-copyStorybookPreset(source, target);
+const hasTypeScript = await detectTypeScript();
+
+hasTypeScript ? copyStorybookPreset(sourceTs, target) : copyStorybookPreset(sourceJs, target);
 
 await addStorybookCommands();
 
