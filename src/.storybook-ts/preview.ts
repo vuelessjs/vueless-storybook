@@ -4,13 +4,6 @@ import { setup } from "@storybook/vue3-vite";
 
 import type { Preview } from "@storybook/vue3-vite";
 
-type Story = {
-  id: string;
-  importPath: string;
-  name: string;
-  title: string;
-};
-
 /* Theme styles */
 import "./themes/preview.css";
 import { themeDark } from "./themes/themeDark";
@@ -34,7 +27,7 @@ setup((app) => {
   }
 });
 
-export const preview: Preview = {
+export default {
   /* Set storybook decorators */
   decorators: [vue3SourceDecorator, storyDarkModeDecorator],
 
@@ -56,7 +49,8 @@ export const preview: Preview = {
       stylePreview: true,
     },
     options: {
-      storySort: (a: Story, b: Story) => {
+      // @ts-expect-error: Storybook types are not correct.
+      storySort: (a, b) => {
         const idA = a.id.split("--")[0];
         const idB = b.id.split("--")[0];
 
@@ -64,7 +58,7 @@ export const preview: Preview = {
       },
     },
   },
-};
+} as Preview;
 
 /* Reload the page on the error "Failed to fetch dynamically imported module..." */
 window.addEventListener("error", (ev) => onFailedToFetchModule(ev.message));

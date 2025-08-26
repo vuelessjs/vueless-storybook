@@ -25,7 +25,7 @@ setup((app) => {
   }
 });
 
-export const preview = {
+export default {
   /* Set storybook decorators */
   decorators: [vue3SourceDecorator, storyDarkModeDecorator],
 
