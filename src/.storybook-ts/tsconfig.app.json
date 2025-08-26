@@ -19,7 +19,6 @@
 
     /* Path settings */
     "baseUrl": ".",
-    "rootDir": "./",
 
     /* Enables all strict type-checking options. */
     "strict": true,
