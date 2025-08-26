@@ -1,6 +1,6 @@
 import { create } from "storybook/theming/create";
 
-export default create({
+export const themeLightPreview = create({
   base: "light",
   // Typography
   fontBase: '"Roboto", sans-serif',

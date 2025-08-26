@@ -1,5 +1,5 @@
 /** @type { import('@storybook/vue3-vite').StorybookConfig } */
-import { defineConfigWithVueless } from "vueless/utils/node/storybook.js";
+import { defineConfigWithVueless } from "vueless/storybook";
 
 export default defineConfigWithVueless({
   stories: [

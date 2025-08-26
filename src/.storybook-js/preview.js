@@ -4,9 +4,9 @@ import { setup } from "@storybook/vue3-vite";
 
 /* Theme styles */
 import "./themes/preview.css";
-import themeDark from "./themes/themeDark.js";
-import themeLight from "./themes/themeLight.js";
-import themeLightPreview from "./themes/themeLightPreview.js";
+import { themeDark } from "./themes/themeDark.js";
+import { themeLight } from "./themes/themeLight.js";
+import { themeLightPreview } from "./themes/themeLightPreview.js";
 
 /* Vue plugins */
 import { createVueless } from "vueless";
@@ -25,32 +25,34 @@ setup((app) => {
   }
 });
 
-/* Set storybook decorators */
-export const decorators = [vue3SourceDecorator, storyDarkModeDecorator];
+export const preview = {
+  /* Set storybook decorators */
+  decorators: [vue3SourceDecorator, storyDarkModeDecorator],
 
-/* Set storybook tags */
-export const tags = ["autodocs"];
+  /* Set storybook tags */
+  tags: ["autodocs"],
 
-/* Set storybook parameters */
-export const parameters = {
-  layout: "fullscreen",
-  backgrounds: { disable: true },
-  docs: {
-    theme: themeLightPreview,
-    source: { language: "html" },
-  },
-  darkMode: {
-    light: themeLight,
-    dark: themeDark,
-    classTarget: "body",
-    stylePreview: true,
-  },
-  options: {
-    storySort: (a, b) => {
-      const idA = a.id.split("--")[0];
-      const idB = b.id.split("--")[0];
+  /* Set storybook parameters */
+  parameters: {
+    layout: "fullscreen",
+    backgrounds: { disable: true },
+    docs: {
+      theme: themeLightPreview,
+      source: { language: "html" },
+    },
+    darkMode: {
+      light: themeLight,
+      dark: themeDark,
+      classTarget: "body",
+      stylePreview: true,
+    },
+    options: {
+      storySort: (a, b) => {
+        const idA = a.id.split("--")[0];
+        const idB = b.id.split("--")[0];
 
-      return idA.localeCompare(idB, undefined, { numeric: true });
+        return idA.localeCompare(idB, undefined, { numeric: true });
+      },
     },
   },
 };
