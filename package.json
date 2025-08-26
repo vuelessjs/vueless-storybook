@@ -59,9 +59,6 @@
     "vue-tsc": "^3.0.6",
     "vueless": "^1.2.1-beta.2"
   },
-  "peerDependencies": {
-    "vueless": ">=1.2.0 <2.0.0"
-  },
   "overrides": {
     "vue-docgen-api": {
       "vue": "latest",
