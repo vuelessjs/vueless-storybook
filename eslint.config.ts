@@ -1,7 +1,7 @@
-import { defineConfig } from "eslint/config";
 import globals from "globals";
 
 import js from "@eslint/js";
+import ts from "typescript-eslint";
 import stylistic from "@stylistic/eslint-plugin";
 import eslintPluginPrettier from "eslint-plugin-prettier/recommended";
 
@@ -15,14 +15,17 @@ const languageOptions = {
   },
 };
 
-export default defineConfig([
+export default ts.config(
   eslintPluginPrettier,
+  js.configs.recommended,
   {
     name: "common",
     languageOptions,
-    files: ["**/*.{js,ts}"],
-    plugins: { js, vue: stylistic },
-    extends: ["js/recommended"],
+    plugins: {
+      js,
+      vue: stylistic,
+      "@typescript-eslint": ts.plugin,
+    },
     rules: {
       "no-console": process.env.PROD ? "error" : "warn",
       "no-debugger": process.env.PROD ? "error" : "warn",
@@ -50,4 +53,4 @@ export default defineConfig([
       "prettier/prettier": ["warn", { printWidth: 120 }],
     },
   },
-]);
+);
