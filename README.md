@@ -9,7 +9,14 @@ Zero config preset to launch a tailored Storybook instance for a [Vueless](https
 ## Installation
 
 ```bash
-npm install @vueless/storybook
+# Install Vueless UI.
+npm install vueless
+
+# Install Vueless Storybook preset.
+npm install -D @vueless/storybook
+
+# Copy Vueless Storybook preset into your project.
+npx @vueless/storybook
 ```
 
 ## Contributing
