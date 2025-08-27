@@ -3,6 +3,7 @@
 import path from "node:path";
 import { cwd } from "node:process";
 import { styleText } from "node:util";
+import { fileURLToPath } from "node:url";
 import { readFile, writeFile } from "node:fs/promises";
 import { cpSync, renameSync, existsSync } from "node:fs";
 
@@ -16,7 +17,7 @@ import { detectTypeScript } from "vueless/utils/node/helper.js";
  * @return {Promise<void>} A promise that resolves once the initialization process is complete.
  */
 export async function storybookInit() {
-  const __dirname = path.dirname(new URL(import.meta.url).pathname);
+  const __dirname = path.dirname(fileURLToPath(import.meta.url));
   const sourceTs = path.join(__dirname, "..", "..", ".storybook-ts");
   const sourceJs = path.join(__dirname, "..", "..", ".storybook-js");
   const target = path.join(cwd(), ".storybook");
