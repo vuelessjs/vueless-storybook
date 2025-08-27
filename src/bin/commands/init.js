@@ -17,8 +17,8 @@ import { detectTypeScript } from "vueless/utils/node/helper.js";
  */
 export async function storybookInit() {
   const __dirname = path.dirname(new URL(import.meta.url).pathname);
-  const sourceTs = path.join(__dirname, "..", ".storybook-ts");
-  const sourceJs = path.join(__dirname, "..", ".storybook-js");
+  const sourceTs = path.join(__dirname, "..", "..", ".storybook-ts");
+  const sourceJs = path.join(__dirname, "..", "..", ".storybook-js");
   const target = path.join(cwd(), ".storybook");
 
   (await detectTypeScript())
