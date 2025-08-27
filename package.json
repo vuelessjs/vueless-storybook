@@ -11,7 +11,7 @@
     "access": "public"
   },
   "bin": {
-    "@vueless/storybook": "./bin/index.js"
+    "vueless-storybook": "./bin/index.js"
   },
   "scripts": {
     "ts:check": "vue-tsc --build --force",
