@@ -1,5 +1,4 @@
-export { storyDarkModeDecorator } from "./decorators/storyDarkModeDecorator";
-export { vue3SourceDecorator } from "./decorators/vue3SourceDecorator";
+export { buildWebTypes } from "./webTypes/index.js";
 
 import { getVuelessConfig } from "vueless/utils/node/vuelessConfig.js";
 import {

@@ -16,7 +16,7 @@ npm install vueless
 npm install -D @vueless/storybook
 
 # Copy Vueless Storybook preset into your project.
-npx @vueless/storybook
+npx @vueless/storybook init
 ```
 
 ## Contributing

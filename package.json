@@ -1,12 +1,10 @@
 {
   "name": "@vueless/storybook",
-  "version": "1.2.1-beta.3",
+  "version": "1.2.1-beta.4",
   "description": "Simplifies Storybook configuration for Vueless UI library.",
   "author": "Johnny Grid <hello@vueless.com> (https://vueless.com)",
   "homepage": "https://vueless.com",
   "license": "MIT",
-  "main": "index.js",
-  "type": "module",
   "publishConfig": {
     "access": "public"
   },
@@ -57,6 +55,16 @@
     "vue-router": "latest",
     "vue-tsc": "^3.0.6",
     "vueless": "^1.2.2"
+  },
+  "type": "module",
+  "main": "index.js",
+  "types": "./index.d.ts",
+  "exports": {
+    ".": {
+      "node": "./index.js",
+      "types": "./index.d.ts",
+      "browser": "./index.browser.js"
+    }
   },
   "overrides": {
     "vue-docgen-api": {

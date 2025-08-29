@@ -1,7 +1,5 @@
-import { UnknownObject } from "vueless";
+export declare function defineConfigWithVueless(options?: any): () => any;
+export declare function getVuelessStoriesGlob(vuelessEnv?: string): Promise<string[]>;
 
-export { storyDarkModeDecorator } from "./decorators/storyDarkModeDecorator";
-export { vue3SourceDecorator } from "./decorators/vue3SourceDecorator";
-
-export declare function defineConfigWithVueless(options?: UnknownObject): () => UnknownObject;
-export function getVuelessStoriesGlob(vuelessEnv?: string): Promise<string[]>;
+export { storyDarkModeDecorator } from "./decorators/storyDarkModeDecorator.js";
+export { vue3SourceDecorator } from "./decorators/vue3SourceDecorator.js";
