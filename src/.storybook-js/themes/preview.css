@@ -1,5 +1,5 @@
 @import "tailwindcss";
-@import "vueless";
+@import "vueless/tailwind.css";
 
 /* -------------------- Storybook Preview UI -------------------- */
 /* -------------------- General -------------------- */

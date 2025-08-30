@@ -2,7 +2,7 @@
 import { extractConfig } from "./lib/config.js";
 import build from "./lib/build.js";
 
-export default async function buildWebTypes(vuelessConfig, srcDir) {
+export async function buildWebTypes(vuelessConfig, srcDir) {
   const config = await extractConfig();
 
   build(config, vuelessConfig, srcDir);
