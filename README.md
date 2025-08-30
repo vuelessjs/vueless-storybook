@@ -2,20 +2,20 @@
 
 # Vueless Storybook preset
 
-Zero config preset to launch a tailored Storybook instance for a [Vueless](https://github.com/vuelessjs/vueless) UI library.
+Zero config preset to launch a tailored Storybook instance for a [Vueless UI](https://github.com/vuelessjs/vueless).
 
 [Documentation](https://docs.vueless.com/installation/storybook/) | [Demo](https://ui.vueless.com/) | [About Vueless UI](http://vueless.com/)
 
 ## Installation
 
 ```bash
-# Install Vueless UI.
+# Install Vueless UI
 npm install vueless
 
-# Install Vueless Storybook preset.
+# Install Vueless Storybook preset
 npm install -D @vueless/storybook
 
-# Copy Vueless Storybook preset into your project.
+# Copy Vueless Storybook preset into your project
 npx @vueless/storybook init
 ```
 
@@ -30,3 +30,6 @@ npx @vueless/storybook init
 ## License
 
 Vueless is released under the [MIT License](https://opensource.org/licenses/MIT).
+
+---
+From Ukrainians to a Peaceful World 🇺🇦
