@@ -4,8 +4,14 @@ import { cwd } from "node:process";
 import { readFile } from "fs/promises";
 import { pathToFileURL } from "node:url";
 import esbuild from "esbuild";
+import {
+  VUELESS_CACHE_DIR,
+  VUELESS_LOCAL_DIR,
+  VUELESS_PACKAGE_DIR,
+  SRC_USER_COMPONENTS_DIR,
+  VUELESS_USER_COMPONENTS_DIR,
+} from "vueless/constants.js";
 
-const CACHE_PATH = "./node_modules/.cache/vueless";
 const WEB_TYPES_CONFIG_FILE_NAME = "web-types.config";
 
 export async function extractConfig() {
@@ -15,13 +21,17 @@ export async function extractConfig() {
   const config = await getConfig();
 
   const components = config?.isVuelessEnv
-    ? ["src/**/*.vue"]
-    : ["node_modules/vueless/**/*.vue", "src/components/**/*.vue", ".vueless/components/**/*.vue"];
+    ? [`${VUELESS_LOCAL_DIR}/**/*.vue`]
+    : [
+        `${VUELESS_PACKAGE_DIR}/**/*.vue`,
+        `${SRC_USER_COMPONENTS_DIR}/**/*.vue`,
+        `${VUELESS_USER_COMPONENTS_DIR}/**/*.vue`,
+      ];
 
   return {
     cwd: cwd(),
     components,
-    outFile: `${CACHE_PATH}/web-types.json`,
+    outFile: `./${VUELESS_CACHE_DIR}/web-types.json`,
     packageName: packageJson["name"],
     packageVersion: packageJson["version"],
     descriptionMarkup: "markdown",
@@ -33,7 +43,7 @@ export async function extractConfig() {
 async function getConfig() {
   const configPathJs = path.resolve(cwd(), `${WEB_TYPES_CONFIG_FILE_NAME}.js`);
   const configPathTs = path.resolve(cwd(), `${WEB_TYPES_CONFIG_FILE_NAME}.ts`);
-  const configOutPath = path.join(cwd(), `${CACHE_PATH}/${WEB_TYPES_CONFIG_FILE_NAME}.mjs`);
+  const configOutPath = path.join(cwd(), `${VUELESS_CACHE_DIR}/${WEB_TYPES_CONFIG_FILE_NAME}.mjs`);
 
   let config = {};
 

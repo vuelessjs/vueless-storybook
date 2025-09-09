@@ -6,6 +6,7 @@ import chokidar from "chokidar";
 import { globbySync } from "globby";
 import { parse } from "vue-docgen-api";
 import _ from "lodash-es";
+import { VUELESS_USER_COMPONENTS_DIR, VUELESS_LIBRARY } from "vueless/constants.js";
 
 export default async function build(config, vuelessConfig, srcDir) {
   config.outFile = path.resolve(config.cwd, config.outFile);
@@ -141,7 +142,7 @@ async function extractInformation(absolutePath, config, vuelessConfig) {
     validExtends: (filePath) => {
       const path = filePath.replace(/\\/g, "/");
 
-      return path.includes(config.srcDir) || path.includes(".vueless/components");
+      return path.includes(config.srcDir) || path.includes(VUELESS_USER_COMPONENTS_DIR);
     },
     ...config.apiOptions,
   });
@@ -179,7 +180,7 @@ async function extractInformation(absolutePath, config, vuelessConfig) {
 
   const componentPath = ensureRelative(path.relative(config.cwd, absolutePath));
   // Prevent "Chose declaration" duplication issue in Intellij
-  const source = !componentPath.includes("vueless")
+  const source = !componentPath.includes(VUELESS_LIBRARY)
     ? { source: { module: componentPath, symbol: doc.exportName } }
     : {};
 
