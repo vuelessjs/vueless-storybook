@@ -3,8 +3,12 @@ import { defineConfigWithVueless } from "@vueless/storybook";
 
 export default defineConfigWithVueless({
   stories: [
-    /* Define a path to your own component stories. */
-    // "../src/**/stories.{js,jsx,ts,tsx}",
+    /* Path to the project component stories. */
+    // "../src/**/stories.js",
     // "../src/**/docs.mdx",
+    //
+    /* Path to the custom vueless component stories. */
+    // "../.vueless/components/**/stories.js",
+    // "../.vueless/components/**/docs.mdx",
   ],
 });
