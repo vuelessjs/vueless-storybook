@@ -22,6 +22,18 @@ export const storyDarkModeDecorator = makeDecorator({
     const storybookColorMode = JSON.parse(sbAddonThemesConfig).current || "light";
     const systemColorMode = prefersColorSchemeDark.matches ? "dark" : "light";
 
+    // this fixing first load
+    document.body.classList.add(storybookColorMode);
+
+    // this fixing white blink issue
+    if (window.location.toString().includes("viewMode=docs")) {
+      document.documentElement.classList.add(storybookColorMode);
+
+      setTimeout(() => {
+        document.documentElement.classList.remove("light", "dark");
+      }, 4000);
+    }
+
     DecoratorHelpers.initializeThemeState(["light", "dark"], storybookColorMode || systemColorMode);
 
     previewColorMode = DecoratorHelpers.pluckThemeFromContext(context);
