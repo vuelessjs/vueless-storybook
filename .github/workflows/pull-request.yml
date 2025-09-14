@@ -19,7 +19,6 @@ jobs:
 
   ts-check:
     name: 'TS Check'
-    needs: lint
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
