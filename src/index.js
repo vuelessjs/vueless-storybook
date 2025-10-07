@@ -18,7 +18,7 @@ import {
 export function defineConfigWithVueless(config) {
   return (async () => ({
     ...config,
-    stories: [...config.stories, ...(await getVuelessStoriesGlob(config?.vuelessEnv))],
+    stories: [...(config.stories || []), ...(await getVuelessStoriesGlob(config?.vuelessEnv))],
     addons: [
       ...new Set([
         ...(config.addons || []),
@@ -30,12 +30,12 @@ export function defineConfigWithVueless(config) {
     ],
     staticDirs: ["public"],
     framework: {
-      ...config.framework,
+      ...(config.framework || {}),
       name: "@storybook/vue3-vite",
       options: {
-        ...config.framework?.options,
+        ...(config.framework?.options || {}),
         builder: {
-          ...config.framework?.options?.builder,
+          ...(config.framework?.options?.builder || {}),
           viteConfigPath: ".storybook/vite.config.js",
         },
       },
