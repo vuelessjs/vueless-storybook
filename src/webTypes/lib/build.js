@@ -112,6 +112,25 @@ export function getDefaultConfigJson(fileContents) {
   return (0, eval)("(" + objectString + ")"); // Converting into JS object
 }
 
+/**
+ * Retrieves the default values from the provided component custom properties.
+ */
+export function getCustomPropsDefaults(props) {
+  const customPropsDefaults = {};
+
+  if (!props) {
+    return customPropsDefaults;
+  }
+
+  for (const [key, value] of Object.entries(props)) {
+    if (value.default) {
+      customPropsDefaults[key] = value.default;
+    }
+  }
+
+  return customPropsDefaults;
+}
+
 function getDefaultConfigFileName(folderPath) {
   const folder = fs.readdirSync(path.dirname(folderPath));
 
@@ -159,11 +178,12 @@ async function extractInformation(absolutePath, config, vuelessConfig) {
     defaultConfig = getDefaultConfigJson(defaultConfigContent);
   }
 
-  const globalConfigComponents = vuelessConfig?.component || {};
+  const globalConfigComponents = vuelessConfig?.components || {};
 
   const defaults = _.merge(
     defaultConfig?.defaults || {},
     globalConfigComponents[name]?.defaults || {},
+    getCustomPropsDefaults(globalConfigComponents[name]?.props),
   );
 
   doc.docsBlocks?.forEach((block) => {
