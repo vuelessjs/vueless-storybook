@@ -37,6 +37,7 @@
     "vue-docgen-api": "^4.79.2"
   },
   "devDependencies": {
+    "@release-it/bumper": "^7.0.5",
     "@release-it/conventional-changelog": "^10.0.1",
     "@stylistic/eslint-plugin": "^5.2.3",
     "@types/node": "^24.3.0",
