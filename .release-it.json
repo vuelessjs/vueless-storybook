@@ -14,9 +14,6 @@
     "publishPath": "./dist"
   },
   "plugins": {
-    "@release-it/bumper": {
-      "out": "dist/*.json"
-    },
     "@release-it/conventional-changelog": {
       "infile": false,
       "ignoreRecommendedBump": true,
