@@ -1,6 +1,6 @@
 {
   "name": "@vueless/storybook",
-  "version": "1.2.9",
+  "version": "1.2.10-beta.2",
   "description": "Simplifies Storybook configuration for Vueless UI library.",
   "author": "Johnny Grid <hello@vueless.com> (https://vueless.com)",
   "homepage": "https://vueless.com",
@@ -37,6 +37,7 @@
     "vue-docgen-api": "^4.79.2"
   },
   "devDependencies": {
+    "@release-it/bumper": "^7.0.5",
     "@release-it/conventional-changelog": "^10.0.1",
     "@stylistic/eslint-plugin": "^5.2.3",
     "@types/node": "^24.3.0",
@@ -51,11 +52,11 @@
     "tailwindcss": "^4.1.12",
     "typescript": "^5.9.2",
     "typescript-eslint": "^8.40.0",
-    "vite": "^7.1.9",
+    "vite": "^7.1.11",
     "vue": "latest",
     "vue-router": "latest",
     "vue-tsc": "^3.0.6",
-    "vueless": "^1.2.5"
+    "vueless": "^1.2.14"
   },
   "type": "module",
   "main": "index.js",
