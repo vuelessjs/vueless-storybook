@@ -27,7 +27,7 @@
     "@storybook/addon-links": "^10.0.2",
     "@storybook/addon-themes": "^10.0.2",
     "@storybook/vue3-vite": "^10.0.2",
-    "@vueless/storybook-dark-mode": "^10.0.1-beta.0",
+    "@vueless/storybook-dark-mode": "^10.0.1-beta.1",
     "chokidar": "^4.0.3",
     "esbuild": "^0.25.9",
     "globby": "^14.1.0",
