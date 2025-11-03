@@ -1,12 +1,17 @@
-import { storyDarkModeDecorator, vue3SourceDecorator } from "@vueless/storybook";
+import {
+  getThemeDark,
+  getThemeLight,
+  getThemeLightPreview,
+  vue3SourceDecorator,
+  storyDarkModeDecorator,
+} from "@vueless/storybook";
 import { getRandomId } from "vueless";
 import { setup } from "@storybook/vue3-vite";
 
 /* Theme styles */
-import "./themes/preview.css";
-import { themeDark } from "./themes/themeDark.js";
-import { themeLight } from "./themes/themeLight.js";
-import { themeLightPreview } from "./themes/themeLightPreview.js";
+import "./theme/theme.css";
+import "@vueless/storybook/preview.css";
+import { theme } from "./theme/theme.js";
 
 /* Vue plugins */
 import { createVueless } from "vueless";
@@ -37,12 +42,12 @@ export default {
     layout: "fullscreen",
     backgrounds: { disable: true },
     docs: {
-      theme: themeLightPreview,
+      theme: getThemeLightPreview(theme),
       source: { language: "html" },
     },
     darkMode: {
-      light: themeLight,
-      dark: themeDark,
+      light: getThemeLight(theme),
+      dark: getThemeDark(theme),
       classTarget: "body",
       stylePreview: true,
     },
