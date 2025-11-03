@@ -1,41 +1,42 @@
 import { create } from "storybook/theming/create";
 import type { ThemeVars } from "storybook/theming";
+import { theme } from "./theme";
 
 export const themeLightPreview: ThemeVars = create({
   base: "light",
-  // Typography
-  fontBase: '"Roboto", sans-serif',
-  fontCode: "monospace",
 
-  // Main colors
-  colorPrimary: "#111827", // gray-900
-  colorSecondary: "#6b7280", // gray-500
+  /* Fonts */
+  fontBase: theme.fontBase,
+  fontCode: theme.fontCode,
 
-  // UI
-  appBg: "#f3f4f6", // gray-100
-  appPreviewBg: "#f9fafb", // gray-50
-  appBorderColor: "#e5e7eb", // gray-200
-  appContentBg: "#f9fafb", // gray-50
-  appBorderRadius: 8,
+  /* Main colors */
+  colorPrimary: theme.colors.gray[900],
+  colorSecondary: theme.colors.gray[500],
 
-  // Text colors
-  textColor: "#111827", // gray-900
-  textInverseColor: "#f9fafb", // gray-50
+  /* UI */
+  appBg: theme.colors.gray[100],
+  appPreviewBg: theme.colors.gray[50],
+  appBorderColor: theme.colors.gray[200],
+  appContentBg: theme.colors.gray[50],
+  appBorderRadius: theme.rounded.lg,
 
-  // Toolbar default and active colors
-  barTextColor: "#6b7280", // gray-500
-  barHoverColor: "#4b5563", // gray-600
-  barSelectedColor: "#374151", // gray-700
-  barBg: "#ffffff", // white
+  /* Text colors */
+  textColor: theme.colors.gray[900],
+  textInverseColor: theme.colors.gray[50],
 
-  // Form colors
-  inputBg: "#ffffff", // white
-  inputBorder: "#d1d5db", // gray-300
-  inputTextColor: "#111827", // gray-900
-  inputBorderRadius: 4,
+  /* Toolbar default and active colors */
+  barTextColor: theme.colors.gray[500],
+  barHoverColor: theme.colors.gray[600],
+  barSelectedColor: theme.colors.gray[700],
+  barBg: theme.colors.white,
 
-  buttonBg: "#f3f4f6", // gray-100
-  buttonBorder: "#e5e7eb", // gray-200
-  booleanBg: "#f9fafb", // gray-50
-  booleanSelectedBg: "#e5e7eb", // gray-200
+  /* Form colors */
+  inputBg: theme.colors.white,
+  inputBorder: theme.colors.gray[300],
+  inputTextColor: theme.colors.gray[900],
+  inputBorderRadius: theme.rounded.sm,
+  buttonBg: theme.colors.gray[100],
+  buttonBorder: theme.colors.gray[200],
+  booleanBg: theme.colors.gray[50],
+  booleanSelectedBg: theme.colors.gray[200],
 });

@@ -1,44 +1,46 @@
 import { create } from "storybook/theming/create";
+import { theme } from "./theme";
 
 export const themeDark = create({
   base: "dark",
-  // Typography
-  fontBase: '"Roboto", sans-serif',
-  fontCode: "monospace",
 
-  brandTitle: "Vueless UI",
-  brandUrl: "https://vueless.com",
-  brandImage: "./images/logo-dark.svg",
-  brandTarget: "_blank",
+  /* Fonts */
+  fontBase: theme.fontBase,
+  fontCode: theme.fontCode,
 
-  // Main colors
-  colorPrimary: "#e5e7eb", // gray-200
-  colorSecondary: "#374151", // gray-700
+  /* Brand block */
+  brandTitle: theme.brandTitle,
+  brandUrl: theme.brandUrl,
+  brandImage: theme.brandImageDark,
+  brandTarget: theme.brandTarget,
 
-  // UI
-  appBg: "#111827", // gray-900
-  appPreviewBg: "#111827", // gray-900
-  appBorderColor: "#111827", // gray-900
+  /* Main colors */
+  colorPrimary: theme.colors.gray[200],
+  colorSecondary: theme.colors.gray[700],
+
+  /* UI */
+  appBg: theme.colors.gray[900],
+  appPreviewBg: theme.colors.gray[900],
+  appBorderColor: theme.colors.gray[900],
   appBorderRadius: 0,
 
-  // Text colors
-  textColor: "#d1d5db", // gray-300
-  textInverseColor: "#1f2937", // gray-800
+  /* Text colors */
+  textColor: theme.colors.gray[300],
+  textInverseColor: theme.colors.gray[800],
 
-  // Toolbar default and active colors
-  barTextColor: "#6b7280", // gray-500
-  barHoverColor: "#9ca3af", // gray-400
-  barSelectedColor: "#d1d5db", // gray-300
-  barBg: "#030712", // gray-950
+  /* Toolbar default and active colors */
+  barTextColor: theme.colors.gray[500],
+  barHoverColor: theme.colors.gray[400],
+  barSelectedColor: theme.colors.gray[300],
+  barBg: theme.colors.gray[950],
 
-  // Form colors
-  inputBg: "#030712", // gray-950
-  inputBorder: "#4b5563", // gray-600
-  inputTextColor: "#f3f4f6", // gray-100
-  inputBorderRadius: 4,
-
-  buttonBg: "#1f2937", // gray-800
-  buttonBorder: "#1f2937", // gray-800
-  booleanBg: "#111827", // gray-900
-  booleanSelectedBg: "#1f2937", // gray-800
+  /* Form colors */
+  inputBg: theme.colors.gray[950],
+  inputBorder: theme.colors.gray[600],
+  inputTextColor: theme.colors.gray[100],
+  inputBorderRadius: theme.rounded.sm,
+  buttonBg: theme.colors.gray[800],
+  buttonBorder: theme.colors.gray[800],
+  booleanBg: theme.colors.gray[900],
+  booleanSelectedBg: theme.colors.gray[800],
 });
