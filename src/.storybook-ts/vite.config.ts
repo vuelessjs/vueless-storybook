@@ -14,7 +14,7 @@ export default defineConfig({
       "prettier2",
       "prettier2/parser-html",
       "@storybook/addon-docs/blocks",
-      "@storybook/theming",
+      "storybook/theming",
       "storybook/internal/docs-tools",
       "@storybook/addon-themes",
       "@storybook/vue3-vite",
