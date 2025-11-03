@@ -23,17 +23,17 @@
     "release:major": "release-it major --ci"
   },
   "dependencies": {
-    "@storybook/addon-docs": "^10.0.2",
-    "@storybook/addon-links": "^10.0.2",
-    "@storybook/addon-themes": "^10.0.2",
-    "@storybook/vue3-vite": "^10.0.2",
+    "@storybook/addon-docs": "^10.0.3",
+    "@storybook/addon-links": "^10.0.3",
+    "@storybook/addon-themes": "^10.0.3",
+    "@storybook/vue3-vite": "^10.0.3",
     "@vueless/storybook-dark-mode": "^10.0.1",
     "chokidar": "^4.0.3",
     "esbuild": "^0.25.9",
     "globby": "^14.1.0",
     "mkdirp": "^3.0.1",
     "prettier2": "npm:prettier@2.8.8",
-    "storybook": "^10.0.2",
+    "storybook": "^10.0.3",
     "vue-docgen-api": "^4.79.2"
   },
   "devDependencies": {
@@ -46,7 +46,7 @@
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prettier": "^5.5.4",
-    "eslint-plugin-storybook": "^10.0.2",
+    "eslint-plugin-storybook": "^10.0.3",
     "prettier": "^3.6.2",
     "release-it": "^19.0.4",
     "tailwindcss": "^4.1.12",
