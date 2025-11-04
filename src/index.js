@@ -43,6 +43,9 @@ export function defineConfigWithVueless(config) {
         },
       },
     },
+    core: {
+      disableWhatsNewNotifications: true,
+    },
     env: (envConfig) => ({
       ...envConfig,
       BASE_URL: "/",
