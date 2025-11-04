@@ -25,14 +25,15 @@ export const storyDarkModeDecorator = makeDecorator({
     // this fixing first load
     document.body.classList.add(storybookColorMode);
 
+    // TODO: Temporary disables
     // this fixing white blink issue
-    if (window.location.toString().includes("viewMode=docs")) {
-      document.documentElement.classList.add(storybookColorMode);
-
-      setTimeout(() => {
-        document.documentElement.classList.remove("light", "dark");
-      }, 4000);
-    }
+    // if (window.location.toString().includes("viewMode=docs")) {
+    //   document.documentElement.classList.add(storybookColorMode);
+    //
+    //   setTimeout(() => {
+    //     document.documentElement.classList.remove("light", "dark");
+    //   }, 4000);
+    // }
 
     DecoratorHelpers.initializeThemeState(["light", "dark"], storybookColorMode || systemColorMode);
 

@@ -1,4 +1,7 @@
 export { buildWebTypes } from "./webTypes/index.js";
+export { getThemeDark } from "./theme/getThemeDark.js";
+export { getThemeLight } from "./theme/getThemeLight.js";
+export { getThemeLightPreview } from "./theme/getThemeLightPreview.js";
 
 import { getVuelessConfig } from "vueless/utils/node/vuelessConfig.js";
 import {
@@ -39,6 +42,9 @@ export function defineConfigWithVueless(config) {
           viteConfigPath: ".storybook/vite.config.js",
         },
       },
+    },
+    core: {
+      disableWhatsNewNotifications: true,
     },
     env: (envConfig) => ({
       ...envConfig,
