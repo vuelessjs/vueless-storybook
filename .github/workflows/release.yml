@@ -103,8 +103,11 @@ jobs:
 
   update-beta:
     name: 'Update Beta'
-    if: github.event_name == 'workflow_dispatch' && github.ref_name == 'main'
-    needs: [ release ]
+    if: |
+      always() &&
+      (needs.release.result == 'success' || needs.release-auto.result == 'success') &&
+      github.ref_name == 'main'
+    needs: [ release, release-auto ]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -123,8 +126,11 @@ jobs:
 
   update-quickstart:
     name: 'Update: Quickstart Templates'
-    if: github.event_name == 'workflow_dispatch' && github.ref_name == 'main'
-    needs: [ release ]
+    if: |
+      always() &&
+      (needs.release.result == 'success' || needs.release-auto.result == 'success') &&
+      github.ref_name == 'main'
+    needs: [ release, release-auto ]
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -135,7 +141,7 @@ jobs:
           token: ${{ secrets.ORG_PA_TOKEN }}
           repository: ${{ matrix.repo }}
           event-type: vueless-storybook-release
-          client-payload: '{"release_type": "${{ github.event.inputs.release_type }}"}'
+          client-payload: '{"release_type": "${{ github.event.inputs.release_type || github.event.client_payload.release_type }}"}'
 
   release-auto:
     name: "Auto-Release: ${{ github.event.client_payload.release_type }}"
