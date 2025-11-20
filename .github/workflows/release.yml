@@ -12,7 +12,7 @@ on:
           - minor
           - major
   repository_dispatch:
-    types: [ storybook-auto-update ]
+    types: [ storybook-auto-update, vueless-storybook-dark-mode-release ]
   push:
     branches: [ beta ]
   pull_request:
@@ -101,6 +101,33 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+  release-auto:
+    name: "Auto-Release: ${{ github.event.client_payload.release_type }}"
+    if: github.event_name == 'repository_dispatch' && (github.event.action == 'storybook-auto-update' || github.event.action == 'vueless-storybook-dark-mode-release')
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{ github.event.client_payload.ref || github.ref_name }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'npm'
+          registry-url: https://registry.npmjs.org/
+      - run: |
+          git config user.name "${GITHUB_ACTOR}"
+          git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
+      - run: npm install -g npm@latest
+      - run: npm ci
+      - run: npm run release:prepare
+      - run: npm run release:${{ github.event.client_payload.release_type }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
   update-beta:
     name: 'Update Beta'
     if: |
@@ -142,30 +169,3 @@ jobs:
           repository: ${{ matrix.repo }}
           event-type: vueless-storybook-release
           client-payload: '{"release_type": "${{ github.event.inputs.release_type || github.event.client_payload.release_type }}"}'
-
-  release-auto:
-    name: "Auto-Release: ${{ github.event.client_payload.release_type }}"
-    if: github.event_name == 'repository_dispatch' && github.event.action == 'storybook-auto-update'
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
-      id-token: write
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-          ref: ${{ github.event.client_payload.ref || github.ref_name }}
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          cache: 'npm'
-          registry-url: https://registry.npmjs.org/
-      - run: |
-          git config user.name "${GITHUB_ACTOR}"
-          git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
-      - run: npm install -g npm@latest
-      - run: npm ci
-      - run: npm run release:prepare
-      - run: npm run release:${{ github.event.client_payload.release_type }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
