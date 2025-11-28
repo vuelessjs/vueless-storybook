@@ -67,6 +67,10 @@
       "types": "./index.d.ts",
       "browser": "./index.browser.js"
     },
+    "./themes": {
+      "types": "./themes.d.ts",
+      "default": "./themes.js"
+    },
     "./manager.css": "./theme/manager.css",
     "./preview.css": "./theme/preview.css"
   },
