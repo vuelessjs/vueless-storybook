@@ -345,9 +345,26 @@ html.vl-dark #storybook-root {
   box-shadow: none !important;
 }
 
-.dark .sbdocs.sbdocs-preview,
-.vl-dark .sbdocs.sbdocs-preview {
+.sbdocs.sbdocs-preview > div {
+  box-shadow: none !important;
+}
+
+/*.light .sbdocs.sbdocs-preview > div:first-child,*/
+.vl-light .sbdocs.sbdocs-preview > [role="toolbar"] {
+  border-bottom: 1px solid var(--neutral-200) !important;
+}
+
+/*.dark .sbdocs.sbdocs-preview > div:first-child,*/
+.vl-dark .sbdocs.sbdocs-preview > [role="toolbar"] {
+  border-bottom: 1px solid var(--neutral-800) !important;
+}
+
+/*.dark .sbdocs.sbdocs-preview,*/
+/*.dark .sbdocs.sbdocs-preview > div,*/
+.vl-dark .sbdocs.sbdocs-preview,
+.vl-dark .sbdocs.sbdocs-preview > div {
   border-color: var(--neutral-800);
+  background: var(--neutral-900);
 }
 
 /* -------------------- Args table -------------------- */
