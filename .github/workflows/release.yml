@@ -120,7 +120,7 @@ jobs:
           registry-url: https://registry.npmjs.org/
       - run: npm install -g npm@latest
       - run: npm ci
-      - run: npm install -D @vueless/storybook-dark-mode@latest
+      - run: npm install @vueless/storybook-dark-mode@latest
       - run: |
           git config user.name "${GITHUB_ACTOR}"
           git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
