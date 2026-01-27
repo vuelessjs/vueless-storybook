@@ -38,7 +38,7 @@
   },
   "devDependencies": {
     "@release-it/bumper": "^7.0.5",
-    "@release-it/conventional-changelog": "^10.0.1",
+    "@release-it/conventional-changelog": "^10.0.4",
     "@stylistic/eslint-plugin": "^5.2.3",
     "@types/node": "^24.3.0",
     "@vitejs/plugin-vue": "^6.0.1",
@@ -48,7 +48,7 @@
     "eslint-plugin-prettier": "^5.5.4",
     "eslint-plugin-storybook": "^10.2.0",
     "prettier": "^3.6.2",
-    "release-it": "^19.0.4",
+    "release-it": "^19.2.4",
     "tailwindcss": "^4.1.12",
     "typescript": "^5.9.2",
     "typescript-eslint": "^8.40.0",
