@@ -153,6 +153,7 @@ button[data-testid="context-menu"] {
 .sidebar-header + div,
 #storybook-checklist-widget,
 .sidebar-header + div > div:before {
+  display: none;
   border-radius: var(--rounded-lg);
 }
 
