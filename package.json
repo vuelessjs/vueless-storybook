@@ -37,7 +37,6 @@
     "vue-docgen-api": "^4.79.2"
   },
   "devDependencies": {
-    "@eslint/js": "^10.0.1",
     "@release-it/bumper": "^7.0.5",
     "@release-it/conventional-changelog": "^11.0.0",
     "@stylistic/eslint-plugin": "^5.10.0",
@@ -48,7 +47,6 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prettier": "^5.5.5",
     "eslint-plugin-storybook": "^10.3.5",
-    "globals": "^17.5.0",
     "prettier": "^3.8.3",
     "release-it": "^20.0.1",
     "tailwindcss": "^4.2.4",
