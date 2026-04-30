@@ -52,7 +52,10 @@ async function rebuild(config, files, cachedContent, vuelessConfig) {
     // if we are initializing the current file, parse all components
     await Promise.all(files.map(cacheWebTypesContent));
   } catch (e) {
-    throw new Error(`Error building file ${config.outFile}: ${e.message}`);
+    throw new Error(
+      `Error building file ${config.outFile}: ${e instanceof Error ? e.message : String(e)}`,
+      { cause: e },
+    );
   }
 
   // and finally, save all concatenated values to the Markdown file
