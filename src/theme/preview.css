@@ -335,6 +335,10 @@ html.vl-dark #storybook-root {
   color: var(--neutral-400);
 }
 
+.vl-dark .docblock-code-toggle + * {
+  color: var(--neutral-300) !important;
+}
+
 .vl-light .docblock-code-toggle {
   border: 1px solid var(--neutral-300) !important;
 }
@@ -347,8 +351,8 @@ html.vl-dark #storybook-root {
 .docblock-source > div > button,
 .docs-story > div > button,
 .docs-story + div > div > button {
-  margin: 0 4px 4px 0 !important;
-  border-radius: var(--rounded-lg) !important;
+  margin: 0 !important;
+  border-radius: var(--rounded-md) !important;
   box-shadow: none !important;
 }
 
