@@ -336,7 +336,7 @@ html.vl-dark #storybook-root {
 }
 
 .vl-dark .docblock-code-toggle + * {
-  color: var(--neutral-300) !important;
+  color: var(--neutral-400) !important;
 }
 
 .vl-light .docblock-code-toggle {

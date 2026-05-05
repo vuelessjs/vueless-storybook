@@ -14,14 +14,12 @@ affecting rendered component(s) below Canvas and Docs tabs.
   body {
     font-family: Roboto, sans-serif;
   }
+
+  .sbdocs-content :is(h1, h2, h3, h4, h5, h6)[id] {
+    scroll-margin-top: 8px;
+  }
 </style>
 
-<!--
-Docs deep links use iframe URLs like:
-iframe.html?viewMode=docs&id=<metaId>#anchor--<storyId>
-(e.g. #anchor--1010--left-icon). Native hash scrolling runs before addon-docs
-renders .sb-anchor nodes, so we scroll again once the target exists.
--->
 <script>
   (function docsAnchorScroll() {
     var ANCHOR_PREFIX = "anchor--";
