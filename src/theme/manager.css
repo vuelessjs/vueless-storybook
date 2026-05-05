@@ -99,6 +99,18 @@ button[data-testid="context-menu"] {
   border-radius: var(--rounded-lg) !important;
 }
 
+.search-field:has(input:focus) {
+  outline: none;
+}
+
+.dark .search-field button:hover {
+  color: var(--neutral-400);
+}
+
+.dark [data-testid="sb-preview-toolbar"] button:hover {
+  color: var(--neutral-400);
+}
+
 .sidebar-item,
 .search-result-item {
   text-transform: capitalize;
@@ -155,6 +167,10 @@ button[data-testid="context-menu"] {
 .sidebar-header + div > div:before {
   display: none;
   border-radius: var(--rounded-lg);
+}
+
+.dark .sidebar-header button:hover {
+  color: var(--neutral-400);
 }
 
 .dark #storybook-checklist-widget {
