@@ -275,6 +275,25 @@ html.vl-dark #storybook-root {
   text-decoration: underline dashed var(--primary-600);
 }
 
+.sbdocs .sbdocs-content .sb-anchor > :is(h1, h2, h3, h4) {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.sbdocs .sbdocs-content .sb-anchor > :is(h1, h2, h3, h4) > a[href^="#"] {
+  float: none !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  flex-shrink: 0;
+  line-height: 1 !important;
+}
+
+.sbdocs .sbdocs-content .sb-anchor > :is(h1, h2, h3, h4) > a[href^="#"] svg {
+  position: static !important;
+  top: auto !important;
+}
+
 .sb-bar,
 .docs-story {
   background-color: var(--white);
@@ -316,6 +335,10 @@ html.vl-dark #storybook-root {
   color: var(--neutral-400);
 }
 
+.vl-dark .docblock-code-toggle + * {
+  color: var(--neutral-400) !important;
+}
+
 .vl-light .docblock-code-toggle {
   border: 1px solid var(--neutral-300) !important;
 }
@@ -328,8 +351,8 @@ html.vl-dark #storybook-root {
 .docblock-source > div > button,
 .docs-story > div > button,
 .docs-story + div > div > button {
-  margin: 0 4px 4px 0 !important;
-  border-radius: var(--rounded-lg) !important;
+  margin: 0 !important;
+  border-radius: var(--rounded-md) !important;
   box-shadow: none !important;
 }
 
