@@ -116,6 +116,10 @@ button[data-testid="context-menu"] {
   text-transform: capitalize;
 }
 
+.dark .sidebar-subheading-action:hover {
+  color: var(--neutral-400);
+}
+
 .light .sidebar-item svg[type="document"],
 .light .sidebar-item svg[type="component"],
 .light .search-result-item svg[type="document"],
