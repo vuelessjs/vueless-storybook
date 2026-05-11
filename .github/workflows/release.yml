@@ -67,7 +67,6 @@ jobs:
       - run: |
           git config user.name "${GITHUB_ACTOR}"
           git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
-      # OIDC publishing requires npm v11.5.1 or later.
       - run: npm install -g npm@~11.10.0
       - run: npm ci
       - run: npm run release:prepare
@@ -95,7 +94,6 @@ jobs:
       - run: |
           git config user.name "${GITHUB_ACTOR}"
           git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
-      # OIDC publishing requires npm v11.5.1 or later.
       - run: npm install -g npm@~11.10.0
       - run: npm ci
       - run: npm run release:prepare
@@ -120,7 +118,6 @@ jobs:
           node-version: 24
           cache: 'npm'
           registry-url: https://registry.npmjs.org/
-      # OIDC publishing requires npm v11.5.1 or later.
       - run: npm install -g npm@~11.10.0
       - run: npm ci
       - run: npm install @vueless/storybook-dark-mode@latest
