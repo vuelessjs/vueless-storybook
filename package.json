@@ -61,6 +61,9 @@
     "vueless": "^1.4.7"
   },
   "type": "module",
+  "engines": {
+    "node": ">=24"
+  },
   "main": "index.js",
   "types": "./index.d.ts",
   "exports": {
