@@ -19,11 +19,10 @@
     "noEmit": true,
 
     /* Path settings */
-    "baseUrl": ".",
     "rootDir": "./src",
     "outDir": "./dist",
     "paths": {
-      "@/*": ["src/*"],
+      "@/*": ["./src/*"],
     },
 
     /* Enables all strict type-checking options. */
