@@ -275,6 +275,10 @@ html.vl-dark #storybook-root {
   text-decoration: underline dashed var(--primary-600);
 }
 
+.docs-story {
+  padding-bottom: 1px;
+}
+
 .sb-bar,
 .docs-story {
   background-color: var(--white);
