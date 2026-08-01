@@ -294,6 +294,10 @@ html.vl-dark #storybook-root {
   top: auto !important;
 }
 
+.docs-story {
+  padding-bottom: 1px;
+}
+
 .sb-bar,
 .docs-story {
   background-color: var(--white);
