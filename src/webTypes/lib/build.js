@@ -1,6 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
-import { readFile } from "node:fs/promises";
+import { readFile, writeFile } from "node:fs/promises";
 import { mkdirp } from "mkdirp";
 import chokidar from "chokidar";
 import { globbySync } from "globby";
@@ -32,7 +32,7 @@ export default async function build(config, vuelessConfig, srcDir) {
 
 function getSources(components, cwd) {
   const watcher = chokidar.watch(components, { cwd });
-  const allComponentFiles = globbySync(components, { cwd });
+  const allComponentFiles = globbySync(components, { cwd, ignore: ["**/tests/**"] });
 
   return { watcher, componentFiles: allComponentFiles };
 }
@@ -66,7 +66,6 @@ async function writeDownWebTypesFile(config, definitions, destFilePath) {
   const destFolder = path.dirname(destFilePath);
 
   await mkdirp(destFolder);
-  let writeStream = fs.createWriteStream(destFilePath);
 
   const contents = {
     framework: "vue",
@@ -98,8 +97,7 @@ async function writeDownWebTypesFile(config, definitions, destFilePath) {
   if (!html.attributes?.length) html.attributes = undefined;
   if (!html["vue-filters"]?.length) html["vue-filters"] = undefined;
 
-  writeStream.write(JSON.stringify(contents, null, 2));
-  writeStream.close();
+  await writeFile(destFilePath, JSON.stringify(contents, null, 2));
 }
 
 function ensureRelative(path) {
